@@ -42,10 +42,7 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
-    "@nx/vitest:test": {
-      "cache": true,
-      "inputs": ["default", "^production"]
-    },
+    "@nx/vitest:test": { "cache": true, "inputs": ["default", "^production"] },
     "@nx/angular:package": {
       "cache": true,
       "dependsOn": ["^build"],
@@ -54,15 +51,8 @@
     "@nx/jest:jest": {
       "cache": true,
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
+      "options": { "passWithNoTests": true },
+      "configurations": { "ci": { "ci": true, "codeCoverage": true } }
     }
   },
   "release": {
@@ -89,32 +79,15 @@
       "tooltip"
     ],
     "projectsRelationship": "independent",
-    "docker": {
-      "skipVersionActions": true
-    },
-    "version": {
-      "preVersionCommand": "pnpm dlx nx run-many -t build"
-    }
+    "docker": { "skipVersionActions": true },
+    "version": { "preVersionCommand": "pnpm dlx nx run-many -t build" }
   },
   "plugins": [
-    {
-      "plugin": "@nx/playwright/plugin",
-      "options": {
-        "targetName": "e2e"
-      }
-    },
-    {
-      "plugin": "@nx/eslint/plugin",
-      "options": {
-        "targetName": "lint"
-      }
-    },
+    { "plugin": "@nx/playwright/plugin", "options": { "targetName": "e2e" } },
+    { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
     {
       "plugin": "@nx/docker",
-      "options": {
-        "buildTarget": "docker:build",
-        "runTarget": "docker:run"
-      }
+      "options": { "buildTarget": "docker:build", "runTarget": "docker:run" }
     },
     {
       "plugin": "@nx/vite/plugin",
@@ -129,12 +102,7 @@
         "watchDepsTargetName": "watch-deps"
       }
     },
-    {
-      "plugin": "@nx/vitest",
-      "options": {
-        "testTargetName": "vite:test"
-      }
-    },
+    { "plugin": "@nx/vitest", "options": { "testTargetName": "vite:test" } },
     {
       "plugin": "@nx/storybook/plugin",
       "options": {
@@ -158,10 +126,8 @@
       "linter": "eslint",
       "unitTestRunner": "vitest-analog"
     },
-    "@nx/angular:component": {
-      "style": "css"
-    }
+    "@nx/angular:component": { "style": "css" }
   },
-  "nxCloudId": "69c4c0df7dc8104deb6147ee",
+  "nxCloudId": "69ca4d959071d442f70732fe",
   "analytics": false
 }
