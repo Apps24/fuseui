@@ -41,7 +41,10 @@ export class FuseRadioGroupComponent
   readonly disabled = input(false);
 
   /** Shared `name` attribute forwarded to all child radios. Auto-generated if omitted. */
-  readonly name = input(`fuse-radio-group-${++_groupId}`);
+  readonly groupName = input(`fuse-radio-group-${++_groupId}`);
+
+  /** Satisfies the RadioGroupRef interface (requires a string property). */
+  get name(): string { return this.groupName(); }
 
   // ─── Public @Output() API ───────────────────────────────────────────────────
 
