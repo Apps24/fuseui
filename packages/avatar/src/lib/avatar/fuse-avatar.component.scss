@@ -1,0 +1,130 @@
+// ─── Component tokens ────────────────────────────────────────────────────────
+:host {
+  --fuse-avatar-size-xs: 24px;
+  --fuse-avatar-size-sm: 32px;
+  --fuse-avatar-size-md: 40px;
+  --fuse-avatar-size-lg: 56px;
+  --fuse-avatar-size-xl: 72px;
+
+  --fuse-avatar-font-size-xs: 0.6rem;
+  --fuse-avatar-font-size-sm: 0.75rem;
+  --fuse-avatar-font-size-md: 0.9rem;
+  --fuse-avatar-font-size-lg: 1.2rem;
+  --fuse-avatar-font-size-xl: 1.6rem;
+
+  --fuse-avatar-bg: var(--fuse-color-primary-subtle, #eef2ff);
+  --fuse-avatar-text-color: var(--fuse-color-primary, #6366f1);
+  --fuse-avatar-border-color: var(--fuse-color-border, #e2e8f0);
+  --fuse-avatar-border-width: 2px;
+  --fuse-avatar-radius-circle: 50%;
+  --fuse-avatar-radius-square: var(--fuse-radius-md, 8px);
+
+  --fuse-avatar-status-size: 10px;
+  --fuse-avatar-status-border: 2px solid var(--fuse-color-surface, #ffffff);
+  --fuse-avatar-status-online:  var(--fuse-color-success, #22c55e);
+  --fuse-avatar-status-offline: var(--fuse-color-border, #cbd5e1);
+  --fuse-avatar-status-busy:    var(--fuse-color-danger, #ef4444);
+  --fuse-avatar-status-away:    var(--fuse-color-warning, #f59e0b);
+
+  display: inline-flex;
+  position: relative;
+  flex-shrink: 0;
+}
+
+// ─── Base ─────────────────────────────────────────────────────────────────────
+.fuse-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--fuse-avatar-bg);
+  border: var(--fuse-avatar-border-width) solid transparent;
+  font-weight: 600;
+  color: var(--fuse-avatar-text-color);
+
+  // ─── Sizes ────────────────────────────────────────────────────────────────
+  &--xs {
+    width: var(--fuse-avatar-size-xs);
+    height: var(--fuse-avatar-size-xs);
+    font-size: var(--fuse-avatar-font-size-xs);
+    --fuse-avatar-status-size: 6px;
+  }
+
+  &--sm {
+    width: var(--fuse-avatar-size-sm);
+    height: var(--fuse-avatar-size-sm);
+    font-size: var(--fuse-avatar-font-size-sm);
+    --fuse-avatar-status-size: 8px;
+  }
+
+  &--md {
+    width: var(--fuse-avatar-size-md);
+    height: var(--fuse-avatar-size-md);
+    font-size: var(--fuse-avatar-font-size-md);
+  }
+
+  &--lg {
+    width: var(--fuse-avatar-size-lg);
+    height: var(--fuse-avatar-size-lg);
+    font-size: var(--fuse-avatar-font-size-lg);
+    --fuse-avatar-status-size: 13px;
+  }
+
+  &--xl {
+    width: var(--fuse-avatar-size-xl);
+    height: var(--fuse-avatar-size-xl);
+    font-size: var(--fuse-avatar-font-size-xl);
+    --fuse-avatar-status-size: 16px;
+  }
+
+  // ─── Shapes ───────────────────────────────────────────────────────────────
+  &--circle {
+    border-radius: var(--fuse-avatar-radius-circle);
+  }
+
+  &--square {
+    border-radius: var(--fuse-avatar-radius-square);
+  }
+}
+
+// ─── Image ────────────────────────────────────────────────────────────────────
+.fuse-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+// ─── Initials ─────────────────────────────────────────────────────────────────
+.fuse-avatar__initials {
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+// ─── Status dot ───────────────────────────────────────────────────────────────
+.fuse-avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: var(--fuse-avatar-status-size);
+  height: var(--fuse-avatar-status-size);
+  border-radius: 50%;
+  border: var(--fuse-avatar-status-border);
+
+  &--online  { background-color: var(--fuse-avatar-status-online); }
+  &--offline { background-color: var(--fuse-avatar-status-offline); }
+  &--busy    { background-color: var(--fuse-avatar-status-busy); }
+  &--away    { background-color: var(--fuse-avatar-status-away); }
+}
+
+// ─── iOS overrides ────────────────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-avatar-radius-square: var(--fuse-radius-lg, 12px);
+}
+
+// ─── Material Design overrides ────────────────────────────────────────────────
+:host-context(.md) {
+  --fuse-avatar-radius-square: var(--fuse-radius-sm, 4px);
+}

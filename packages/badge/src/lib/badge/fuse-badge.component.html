@@ -1,0 +1,22 @@
+<!-- Wrapped content (optional — makes badge an overlay indicator) -->
+<ng-content></ng-content>
+
+<!-- Badge indicator -->
+<span
+  class="fuse-badge"
+  [class.fuse-badge--dot]="dot()"
+  [class.fuse-badge--sm]="size() === 'sm'"
+  [class.fuse-badge--md]="size() === 'md'"
+  [class.fuse-badge--solid]="variant() === 'solid'"
+  [class.fuse-badge--flat]="variant() === 'flat'"
+  [class.fuse-badge--outline]="variant() === 'outline'"
+  [class.fuse-badge--primary]="color() === 'primary'"
+  [class.fuse-badge--secondary]="color() === 'secondary'"
+  [class.fuse-badge--success]="color() === 'success'"
+  [class.fuse-badge--warning]="color() === 'warning'"
+  [class.fuse-badge--danger]="color() === 'danger'"
+>
+  @if (!dot()) {
+    <span class="fuse-badge__text">{{ content() }}</span>
+  }
+</span>

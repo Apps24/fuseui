@@ -1,0 +1,27 @@
+<div #tabList [class]="tabListClass()" role="tablist">
+  @for (tab of tabs(); track tab.tabId()) {
+    <button
+      #tabBtn
+      role="tab"
+      type="button"
+      [id]="tab.tabId()"
+      [attr.aria-selected]="activeTabId() === tab.tabId()"
+      [attr.aria-controls]="'panel-' + tab.tabId()"
+      [disabled]="tab.disabled() || null"
+      [class]="tabBtnClass(tab)()"
+      (click)="setActive(tab.tabId())">
+      {{ tab.label() }}
+      @if (tab.badge()) {
+        <fuse-badge [content]="tab.badge()!" size="sm"></fuse-badge>
+      }
+    </button>
+  }
+
+  @if (variant() === 'line') {
+    <div #indicator class="fuse-tabs__indicator" aria-hidden="true"></div>
+  }
+</div>
+
+<div class="fuse-tabs__panels">
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,48 @@
+{
+  "theme": {
+    "light": {
+      "primary":        { "$value": "{color.blue.500}" },
+      "primary-hover":  { "$value": "{color.blue.600}" },
+      "bg-surface":     { "$value": "{color.neutral.0}" },
+      "bg-elevated":    { "$value": "{color.neutral.50}" },
+      "bg-sunken":      { "$value": "{color.neutral.100}" },
+      "text-primary":   { "$value": "{color.neutral.900}" },
+      "text-secondary": { "$value": "{color.neutral.600}" },
+      "border":         { "$value": "{color.neutral.200}" },
+      "shadow-color":   { "$value": "rgba(0,0,0,0.08)" }
+    },
+    "dark": {
+      "primary":        { "$value": "#428cff" },
+      "primary-hover":  { "$value": "#5e9fff" },
+      "bg-surface":     { "$value": "#111112" },
+      "bg-elevated":    { "$value": "#1a1a1c" },
+      "bg-sunken":      { "$value": "#0c0c0d" },
+      "text-primary":   { "$value": "#f0f0f0" },
+      "text-secondary": { "$value": "#8a8a9a" },
+      "border":         { "$value": "rgba(255,255,255,0.10)" },
+      "shadow-color":   { "$value": "rgba(0,0,0,0.40)" }
+    },
+    "ocean": {
+      "primary":        { "$value": "#0ea5e9" },
+      "primary-hover":  { "$value": "#0284c7" },
+      "bg-surface":     { "$value": "#f0f9ff" },
+      "bg-elevated":    { "$value": "#e0f2fe" },
+      "bg-sunken":      { "$value": "#bae6fd" },
+      "text-primary":   { "$value": "#0c4a6e" },
+      "text-secondary": { "$value": "#075985" },
+      "border":         { "$value": "#7dd3fc" },
+      "shadow-color":   { "$value": "rgba(14,165,233,0.12)" }
+    },
+    "rose": {
+      "primary":        { "$value": "#f43f5e" },
+      "primary-hover":  { "$value": "#e11d48" },
+      "bg-surface":     { "$value": "#fff1f2" },
+      "bg-elevated":    { "$value": "#ffe4e6" },
+      "bg-sunken":      { "$value": "#fecdd3" },
+      "text-primary":   { "$value": "#4c0519" },
+      "text-secondary": { "$value": "#9f1239" },
+      "border":         { "$value": "#fda4af" },
+      "shadow-color":   { "$value": "rgba(244,63,94,0.12)" }
+    }
+  }
+}

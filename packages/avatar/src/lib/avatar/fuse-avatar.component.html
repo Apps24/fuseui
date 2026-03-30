@@ -1,0 +1,25 @@
+<!-- Image — shown only when src is set and no load error -->
+@if (src() && !hasError()) {
+  <img
+    class="fuse-avatar__img"
+    [src]="src()"
+    [alt]="alt()"
+    (error)="onImageError()"
+  />
+}
+
+<!-- Initials fallback — shown when no src, or on image error -->
+@if (!src() || hasError()) {
+  <span class="fuse-avatar__initials" aria-hidden="true">
+    {{ initials() }}
+  </span>
+}
+
+<!-- Status indicator dot -->
+@if (status()) {
+  <span
+    class="fuse-avatar__status"
+    [class]="'fuse-avatar__status--' + status()"
+    [attr.aria-label]="status()"
+  ></span>
+}

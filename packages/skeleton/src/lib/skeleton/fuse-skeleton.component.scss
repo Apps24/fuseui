@@ -1,0 +1,59 @@
+// ─── Shimmer keyframe (global — defined once per document) ───────────────────
+@keyframes fuse-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+
+// ─── Component tokens ────────────────────────────────────────────────────────
+:host {
+  --fuse-skeleton-bg-base:      var(--fuse-color-bg-elevated, #f1f5f9);
+  --fuse-skeleton-bg-highlight: var(--fuse-color-border-default, #e2e8f0);
+  --fuse-skeleton-radius-text:  var(--fuse-radius-sm, 4px);
+  --fuse-skeleton-radius-rect:  var(--fuse-radius-md, 8px);
+  --fuse-skeleton-line-gap:     var(--fuse-space-2, 0.5rem);
+  --fuse-skeleton-duration:     1.6s;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--fuse-skeleton-line-gap);
+  width: 100%;
+}
+
+// ─── Base shimmer element ─────────────────────────────────────────────────────
+.fuse-skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--fuse-skeleton-bg-base)      25%,
+    var(--fuse-skeleton-bg-highlight) 50%,
+    var(--fuse-skeleton-bg-base)      75%
+  );
+  background-size: 200% 100%;
+  animation: fuse-shimmer var(--fuse-skeleton-duration) linear infinite;
+
+  // ─── Variants ─────────────────────────────────────────────────────────────
+  &--text {
+    border-radius: var(--fuse-skeleton-radius-text);
+  }
+
+  &--rect {
+    border-radius: var(--fuse-skeleton-radius-rect);
+  }
+
+  &--circle {
+    border-radius: 50%;
+    // width mirrors height (set via host binding) to maintain aspect ratio
+    aspect-ratio: 1;
+  }
+}
+
+// ─── iOS overrides ────────────────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-skeleton-radius-rect: var(--fuse-radius-lg, 12px);
+}
+
+// ─── Material Design overrides ────────────────────────────────────────────────
+:host-context(.md) {
+  --fuse-skeleton-radius-rect: var(--fuse-radius-xs, 2px);
+  --fuse-skeleton-radius-text: 0;
+}

@@ -1,0 +1,103 @@
+:host {
+  // ── Token aliases (scoped to this component) ─────────────────────────────
+  --fuse-alert-info-color:    var(--fuse-color-info,    #3b82f6);
+  --fuse-alert-success-color: var(--fuse-color-success, #10b981);
+  --fuse-alert-warning-color: var(--fuse-color-warning, #f59e0b);
+  --fuse-alert-error-color:   var(--fuse-color-danger,  #ef4444);
+
+  --fuse-alert-info-bg:    var(--fuse-color-info-50,    #eff6ff);
+  --fuse-alert-success-bg: var(--fuse-color-success-50, #ecfdf5);
+  --fuse-alert-warning-bg: var(--fuse-color-warning-50, #fffbeb);
+  --fuse-alert-error-bg:   var(--fuse-color-danger-50,  #fef2f2);
+
+  --fuse-alert-radius:  var(--fuse-radius-md,  8px);
+  --fuse-alert-padding: var(--fuse-space-3, 12px) var(--fuse-space-4, 16px);
+
+  display: block;
+}
+
+// ── Inner layout ─────────────────────────────────────────────────────────────
+
+.fuse-alert__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--fuse-space-3, 12px);
+  padding: var(--fuse-alert-padding);
+  border-radius: var(--fuse-alert-radius);
+}
+
+.fuse-alert__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.fuse-alert__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fuse-space-1, 4px);
+}
+
+.fuse-alert__title {
+  font-weight: var(--fuse-font-weight-semibold, 600);
+  font-size: var(--fuse-font-size-sm, 0.875rem);
+  line-height: 1.4;
+}
+
+.fuse-alert__message {
+  font-size: var(--fuse-font-size-sm, 0.875rem);
+  line-height: 1.5;
+}
+
+.fuse-alert__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: var(--fuse-radius-sm, 4px);
+  color: currentColor;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+
+  &:hover { opacity: 1; }
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+// ── Variant: soft ────────────────────────────────────────────────────────────
+
+:host(.fuse-alert--soft) {
+  &.fuse-alert--info    .fuse-alert__inner { background: var(--fuse-alert-info-bg);    color: var(--fuse-alert-info-color);    }
+  &.fuse-alert--success .fuse-alert__inner { background: var(--fuse-alert-success-bg); color: var(--fuse-alert-success-color); }
+  &.fuse-alert--warning .fuse-alert__inner { background: var(--fuse-alert-warning-bg); color: var(--fuse-alert-warning-color); }
+  &.fuse-alert--error   .fuse-alert__inner { background: var(--fuse-alert-error-bg);   color: var(--fuse-alert-error-color);   }
+}
+
+// ── Variant: solid ───────────────────────────────────────────────────────────
+
+:host(.fuse-alert--solid) {
+  &.fuse-alert--info    .fuse-alert__inner { background: var(--fuse-alert-info-color);    color: #fff; }
+  &.fuse-alert--success .fuse-alert__inner { background: var(--fuse-alert-success-color); color: #fff; }
+  &.fuse-alert--warning .fuse-alert__inner { background: var(--fuse-alert-warning-color); color: #fff; }
+  &.fuse-alert--error   .fuse-alert__inner { background: var(--fuse-alert-error-color);   color: #fff; }
+}
+
+// ── Platform overrides ───────────────────────────────────────────────────────
+
+:host-context(.ios) {
+  --fuse-alert-radius: var(--fuse-radius-lg, 12px);
+}
+
+:host-context(.md) {
+  // Material Design context: no overrides required
+}

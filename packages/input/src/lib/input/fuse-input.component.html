@@ -1,0 +1,50 @@
+<div
+  class="fuse-input"
+  [class.fuse-input--sm]="size() === 'sm'"
+  [class.fuse-input--md]="size() === 'md'"
+  [class.fuse-input--lg]="size() === 'lg'"
+  [class.fuse-input--error]="showError()"
+  [class.fuse-input--focused]="isFocused()"
+  [class.fuse-input--disabled]="isDisabled()"
+  [class.fuse-input--readonly]="readonly()">
+
+  @if (label()) {
+    <label class="fuse-input__label" [class.fuse-input__label--required]="required()">
+      {{ label() }}
+    </label>
+  }
+
+  <div class="fuse-input__wrapper">
+    <span class="fuse-input__prefix">
+      <ng-content select="[fusePrefix]"></ng-content>
+    </span>
+
+    <input
+      class="fuse-input__field"
+      [type]="type()"
+      [placeholder]="placeholder()"
+      [required]="required()"
+      [readonly]="readonly()"
+      [disabled]="isDisabled()"
+      [value]="value()"
+      (input)="handleInput($event)"
+      (focus)="handleFocus()"
+      (blur)="handleBlur()" />
+
+    <span class="fuse-input__suffix">
+      <ng-content select="[fuseSuffix]"></ng-content>
+    </span>
+  </div>
+
+  @if (showError() && errorMessage()) {
+    <span class="fuse-input__error" role="alert">
+      {{ errorMessage() }}
+    </span>
+  }
+
+  @if (helperText() && !showError()) {
+    <span class="fuse-input__helper">
+      {{ helperText() }}
+    </span>
+  }
+</div>

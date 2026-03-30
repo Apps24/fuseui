@@ -1,0 +1,10 @@
+<div
+  class="fuse-radio-group"
+  role="radiogroup"
+  [class.fuse-radio-group--horizontal]="orientation() === 'horizontal'"
+  [class.fuse-radio-group--vertical]="orientation() === 'vertical'"
+  [attr.aria-label]="ariaLabel() || null"
+  [attr.aria-disabled]="isDisabled() || null"
+>
+  <ng-content></ng-content>
+</div>

@@ -1,0 +1,40 @@
+// ─── Host token overrides ────────────────────────────────────────────────────
+:host {
+  --fuse-label-color:          var(--fuse-color-text-primary);
+  --fuse-label-color-disabled: var(--fuse-color-text-disabled);
+  --fuse-label-font-size:      var(--fuse-font-size-sm);
+  --fuse-label-font-weight:    var(--fuse-font-weight-medium);
+
+  display: inline-block;
+}
+
+// ─── Ionic platform overrides ─────────────────────────────────────────────────
+:host-context(.ios) {
+}
+
+:host-context(.md) {
+}
+
+// ─── Base label ───────────────────────────────────────────────────────────────
+label {
+  display:     inline-flex;
+  align-items: baseline;
+  gap:         var(--fuse-spacing-1);
+  font-size:   var(--fuse-label-font-size);
+  font-weight: var(--fuse-label-font-weight);
+  color:       var(--fuse-label-color);
+  line-height: 1.25;
+  cursor:      default;
+
+  &.fuse-label--disabled {
+    color:  var(--fuse-label-color-disabled);
+    cursor: not-allowed;
+  }
+}
+
+// ─── Asterisk ────────────────────────────────────────────────────────────────
+.fuse-label__asterisk {
+  color:       var(--fuse-color-danger);
+  font-weight: var(--fuse-font-weight-medium);
+  line-height: 1;
+}

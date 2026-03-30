@@ -1,0 +1,117 @@
+// ─── Host ─────────────────────────────────────────────────────────────────────
+
+:host {
+  display: inline-flex;
+  cursor: default;
+  user-select: none;
+  transition:
+    background-color var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth),
+    transform        var(--fuse-duration-micro, 100ms) var(--fuse-easing-ease-out),
+    box-shadow       var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth),
+    color            var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth);
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+
+:host([data-selectable='true']) {
+  cursor: pointer;
+
+  &:active { transform: scale(0.96); }
+}
+
+:host([data-selected='true']) .fuse-chip--flat,
+:host([data-selected='true']) .fuse-chip--bordered {
+  background: var(--fuse-color-primary);
+  color: var(--fuse-color-on-primary);
+  border-color: var(--fuse-color-primary);
+}
+
+:host-context(.ios) { --fuse-chip-radius: var(--fuse-radius-full, 9999px); }
+:host-context(.md)  { --fuse-chip-radius: var(--fuse-radius-sm, 4px); }
+
+// ─── Base chip span ───────────────────────────────────────────────────────────
+
+.fuse-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fuse-spacing-1, 4px);
+  border-radius: var(--fuse-chip-radius, var(--fuse-radius-full, 9999px));
+  font-family: var(--fuse-font-family, system-ui, sans-serif);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+// ─── Sizes ────────────────────────────────────────────────────────────────────
+
+.fuse-chip--sm {
+  padding: 3px 10px;
+  font-size: var(--fuse-fluid-xs, 0.75rem);
+}
+
+.fuse-chip--md {
+  padding: 5px 14px;
+  font-size: var(--fuse-fluid-sm, 0.875rem);
+}
+
+// ─── Variants × Colors ────────────────────────────────────────────────────────
+
+// ── Solid ─────────────────────────────────────────────────────────────────────
+
+.fuse-chip--solid {
+  &.fuse-chip--primary   { background: var(--fuse-color-primary);  color: var(--fuse-color-on-primary); }
+  &.fuse-chip--secondary { background: var(--fuse-color-secondary); color: var(--fuse-color-on-secondary); }
+  &.fuse-chip--success   { background: var(--fuse-color-success);   color: #fff; }
+  &.fuse-chip--warning   { background: var(--fuse-color-warning);   color: #000; }
+  &.fuse-chip--danger    { background: var(--fuse-color-danger);    color: #fff; }
+}
+
+// ── Flat ──────────────────────────────────────────────────────────────────────
+
+.fuse-chip--flat {
+  &.fuse-chip--primary   { background: color-mix(in srgb, var(--fuse-color-primary) 15%, transparent);  color: var(--fuse-color-primary); }
+  &.fuse-chip--secondary { background: color-mix(in srgb, var(--fuse-color-secondary) 50%, transparent); color: var(--fuse-color-on-secondary); }
+  &.fuse-chip--success   { background: color-mix(in srgb, var(--fuse-color-success) 15%, transparent);   color: var(--fuse-color-success); }
+  &.fuse-chip--warning   { background: color-mix(in srgb, var(--fuse-color-warning) 15%, transparent);   color: var(--fuse-color-warning); }
+  &.fuse-chip--danger    { background: color-mix(in srgb, var(--fuse-color-danger) 15%, transparent);    color: var(--fuse-color-danger); }
+}
+
+// ── Bordered ──────────────────────────────────────────────────────────────────
+
+.fuse-chip--bordered {
+  background: transparent;
+
+  &.fuse-chip--primary   { border-color: var(--fuse-color-primary);  color: var(--fuse-color-primary); }
+  &.fuse-chip--secondary { border-color: var(--fuse-color-secondary); color: var(--fuse-color-on-secondary); }
+  &.fuse-chip--success   { border-color: var(--fuse-color-success);   color: var(--fuse-color-success); }
+  &.fuse-chip--warning   { border-color: var(--fuse-color-warning);   color: var(--fuse-color-warning); }
+  &.fuse-chip--danger    { border-color: var(--fuse-color-danger);    color: var(--fuse-color-danger); }
+}
+
+// ─── Close button ─────────────────────────────────────────────────────────────
+
+.fuse-chip__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  margin-right: -4px;
+  padding: 2px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth);
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+
+  &:hover  { opacity: 1; }
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 1px;
+    opacity: 1;
+  }
+}

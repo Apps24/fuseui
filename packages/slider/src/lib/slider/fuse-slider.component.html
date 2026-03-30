@@ -1,0 +1,87 @@
+<div class="fuse-slider" [class.fuse-slider--range]="range()">
+  <div class="fuse-slider__track" #trackEl>
+
+    <!-- Fill bar -->
+    <div class="fuse-slider__fill"
+         [style.left.%]="fillPercent().from"
+         [style.width.%]="fillPercent().to - fillPercent().from">
+    </div>
+
+    @if (range()) {
+
+      <!-- Low thumb -->
+      <div class="fuse-slider__thumb fuse-slider__thumb--low"
+           role="slider"
+           [tabindex]="0"
+           [attr.aria-label]="'Range start'"
+           [attr.aria-valuemin]="min()"
+           [attr.aria-valuemax]="max()"
+           [attr.aria-valuenow]="lowVal()"
+           [style.left.%]="fillPercent().from"
+           [attr.data-pressed]="isDragging() ? 'true' : null"
+           (mousedown)="startDrag($event, 'low')"
+           (touchstart)="startDrag($event, 'low')"
+           (keydown)="onKeydown($event, 'low')"
+           (focus)="isFocused.set(true)"
+           (blur)="isFocused.set(false)">
+        @if (showTooltipVisible()) {
+          <div class="fuse-slider__tooltip" data-entering>{{ lowVal() }}</div>
+        }
+      </div>
+
+      <!-- High thumb -->
+      <div class="fuse-slider__thumb fuse-slider__thumb--high"
+           role="slider"
+           [tabindex]="0"
+           [attr.aria-label]="'Range end'"
+           [attr.aria-valuemin]="min()"
+           [attr.aria-valuemax]="max()"
+           [attr.aria-valuenow]="highVal()"
+           [style.left.%]="fillPercent().to"
+           [attr.data-pressed]="isDragging() ? 'true' : null"
+           (mousedown)="startDrag($event, 'high')"
+           (touchstart)="startDrag($event, 'high')"
+           (keydown)="onKeydown($event, 'high')"
+           (focus)="isFocused.set(true)"
+           (blur)="isFocused.set(false)">
+        @if (showTooltipVisible()) {
+          <div class="fuse-slider__tooltip" data-entering>{{ highVal() }}</div>
+        }
+      </div>
+
+    } @else {
+
+      <!-- Single thumb -->
+      <div class="fuse-slider__thumb"
+           role="slider"
+           [tabindex]="0"
+           [attr.aria-valuemin]="min()"
+           [attr.aria-valuemax]="max()"
+           [attr.aria-valuenow]="value()"
+           [style.left.%]="fillPercent().to"
+           [attr.data-pressed]="isDragging() ? 'true' : null"
+           (mousedown)="startDrag($event, 'single')"
+           (touchstart)="startDrag($event, 'single')"
+           (keydown)="onKeydown($event, 'single')"
+           (focus)="isFocused.set(true)"
+           (blur)="isFocused.set(false)">
+        @if (showTooltipVisible()) {
+          <div class="fuse-slider__tooltip" data-entering>{{ value() }}</div>
+        }
+      </div>
+
+    }
+  </div>
+
+  <!-- Marks -->
+  @if (showMarks() && marks().length) {
+    <div class="fuse-slider__marks">
+      @for (mark of marks(); track mark.value) {
+        <div class="fuse-slider__mark"
+             [style.left.%]="((mark.value - min()) / (max() - min())) * 100">
+          <span class="fuse-slider__mark-label">{{ mark.label }}</span>
+        </div>
+      }
+    </div>
+  }
+</div>

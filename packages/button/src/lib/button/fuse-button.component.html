@@ -1,0 +1,11 @@
+<button
+  [type]="type()"
+  [disabled]="disabled() || loading()"
+  (click)="handleClick($event)">
+  @if (loading()) {
+    <span class="fuse-btn__spinner" aria-hidden="true"></span>
+  }
+  <span class="fuse-btn__content">
+    <ng-content></ng-content>
+  </span>
+</button>

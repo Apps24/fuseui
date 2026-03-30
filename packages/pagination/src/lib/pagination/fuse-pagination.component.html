@@ -1,0 +1,33 @@
+<nav aria-label="Pagination" class="fuse-pagination">
+  <!-- Previous -->
+  <button class="fuse-pagination__btn fuse-pagination__prev"
+          [disabled]="currentPage() === 1"
+          [attr.aria-label]="'Previous page'"
+          (click)="goTo(currentPage() - 1)">
+    <fuse-icon name="chevron-left" size="sm"></fuse-icon>
+  </button>
+
+  <!-- Pages -->
+  @for (page of pages(); track $index) {
+    @if (page === '...') {
+      <span class="fuse-pagination__ellipsis" aria-hidden="true">&hellip;</span>
+    } @else {
+      <button
+        class="fuse-pagination__btn fuse-pagination__page"
+        [class.fuse-pagination__page--active]="page === currentPage()"
+        [attr.aria-current]="page === currentPage() ? 'page' : null"
+        [attr.aria-label]="'Page ' + page"
+        (click)="goTo(+page)">
+        {{ page }}
+      </button>
+    }
+  }
+
+  <!-- Next -->
+  <button class="fuse-pagination__btn fuse-pagination__next"
+          [disabled]="currentPage() === totalPages()"
+          [attr.aria-label]="'Next page'"
+          (click)="goTo(currentPage() + 1)">
+    <fuse-icon name="chevron-right" size="sm"></fuse-icon>
+  </button>
+</nav>

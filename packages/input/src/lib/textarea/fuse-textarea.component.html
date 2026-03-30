@@ -1,0 +1,42 @@
+<div
+  class="fuse-textarea"
+  [class.fuse-textarea--error]="showError()"
+  [class.fuse-textarea--disabled]="isDisabled()"
+  [class.fuse-textarea--auto-resize]="autoResize()">
+
+  @if (label()) {
+    <label class="fuse-textarea__label">{{ label() }}</label>
+  }
+
+  <textarea
+    class="fuse-textarea__field"
+    [rows]="rows()"
+    [placeholder]="placeholder()"
+    [disabled]="isDisabled()"
+    [attr.maxlength]="maxLength()"
+    [value]="value()"
+    (input)="onInput($event)"
+    (blur)="onBlur()">
+  </textarea>
+
+  @if (maxLength()) {
+    <div class="fuse-textarea__count">
+      <span [class.fuse-textarea__count--over]="value().length > maxLength()!">
+        {{ value().length }}
+      </span>
+      / {{ maxLength() }}
+    </div>
+  }
+
+  @if (showError() && errorMessage()) {
+    <span class="fuse-textarea__error" role="alert">
+      {{ errorMessage() }}
+    </span>
+  }
+
+  @if (helperText() && !showError()) {
+    <span class="fuse-textarea__helper">
+      {{ helperText() }}
+    </span>
+  }
+</div>

@@ -1,0 +1,109 @@
+// ─── Host token overrides ────────────────────────────────────────────────────
+:host {
+  --fuse-textarea-bg:           var(--fuse-color-bg-surface);
+  --fuse-textarea-border:       var(--fuse-color-border-default);
+  --fuse-textarea-border-focus: var(--fuse-color-border-focus);
+  --fuse-textarea-border-error: var(--fuse-color-border-error);
+  --fuse-textarea-radius:       var(--fuse-radius-md);
+  --fuse-textarea-color:        var(--fuse-color-text-primary);
+  --fuse-textarea-placeholder:  var(--fuse-color-text-disabled);
+  --fuse-textarea-font-size:    var(--fuse-font-size-md);
+  --fuse-textarea-py:           var(--fuse-spacing-2);
+  --fuse-textarea-px:           var(--fuse-spacing-3);
+
+  display: block;
+}
+
+// ─── Ionic platform overrides ─────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-textarea-radius: var(--fuse-radius-lg);
+}
+
+:host-context(.md) {
+  --fuse-textarea-radius: var(--fuse-radius-sm);
+}
+
+// ─── Root wrapper ─────────────────────────────────────────────────────────────
+.fuse-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fuse-spacing-1);
+}
+
+// ─── Label ────────────────────────────────────────────────────────────────────
+.fuse-textarea__label {
+  font-size:   var(--fuse-font-size-sm);
+  font-weight: var(--fuse-font-weight-medium);
+  color:       var(--fuse-textarea-color);
+  line-height: 1.25;
+}
+
+// ─── Textarea field ───────────────────────────────────────────────────────────
+.fuse-textarea__field {
+  width:        100%;
+  padding:      var(--fuse-textarea-py) var(--fuse-textarea-px);
+  font-size:    var(--fuse-textarea-font-size);
+  font-family:  inherit;
+  color:        var(--fuse-textarea-color);
+  background:   var(--fuse-textarea-bg);
+  border:       1.5px solid var(--fuse-textarea-border);
+  border-radius: var(--fuse-textarea-radius);
+  resize:       vertical;
+  outline:      none;
+  line-height:  1.5;
+  box-sizing:   border-box;
+  transition:   border-color 0.15s, box-shadow 0.15s;
+
+  &::placeholder { color: var(--fuse-textarea-placeholder); }
+
+  &:focus {
+    border-color: var(--fuse-textarea-border-focus);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--fuse-color-primary) 25%, transparent);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor:  not-allowed;
+    resize:  none;
+  }
+
+  .fuse-textarea--error & {
+    border-color: var(--fuse-textarea-border-error);
+
+    &:focus {
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--fuse-color-danger) 25%, transparent);
+    }
+  }
+
+  .fuse-textarea--auto-resize & {
+    resize:    none;
+    overflow-y: hidden;
+  }
+}
+
+// ─── Character count ──────────────────────────────────────────────────────────
+.fuse-textarea__count {
+  font-size:  var(--fuse-font-size-sm);
+  color:      var(--fuse-color-text-secondary, var(--fuse-textarea-placeholder));
+  text-align: right;
+  line-height: 1.25;
+}
+
+.fuse-textarea__count--over {
+  color:       var(--fuse-color-danger);
+  font-weight: var(--fuse-font-weight-medium);
+}
+
+// ─── Error message ────────────────────────────────────────────────────────────
+.fuse-textarea__error {
+  font-size:   var(--fuse-font-size-sm);
+  color:       var(--fuse-color-danger);
+  line-height: 1.25;
+}
+
+// ─── Helper text ──────────────────────────────────────────────────────────────
+.fuse-textarea__helper {
+  font-size:   var(--fuse-font-size-sm);
+  color:       var(--fuse-color-text-secondary, var(--fuse-textarea-placeholder));
+  line-height: 1.25;
+}

@@ -1,0 +1,10 @@
+<button role="menuitem"
+        class="fuse-dropdown-item"
+        [disabled]="disabled()"
+        [class.fuse-dropdown-item--destructive]="destructive()"
+        (click)="itemClick.emit()">
+  @if (icon()) {
+    <fuse-icon [name]="icon()" size="sm"></fuse-icon>
+  }
+  {{ label() }}
+</button>

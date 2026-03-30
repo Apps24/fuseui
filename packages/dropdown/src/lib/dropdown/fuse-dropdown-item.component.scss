@@ -1,0 +1,44 @@
+:host {
+  display: contents;
+}
+
+.fuse-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--fuse-spacing-2, 8px);
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: var(--fuse-spacing-2) var(--fuse-spacing-4);
+  font-size: var(--fuse-fluid-sm, 0.875rem);
+  font-family: inherit;
+  color: var(--fuse-color-text-primary);
+  cursor: pointer;
+  transition: background var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth, ease-out);
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--fuse-color-bg-sunken);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--destructive {
+    color: var(--fuse-color-danger);
+  }
+}
+
+:host-context(.ios) .fuse-dropdown-item {
+  padding: var(--fuse-spacing-3) var(--fuse-spacing-4);
+}
+
+:host-context(.md) .fuse-dropdown-item {
+  padding: var(--fuse-spacing-2) var(--fuse-spacing-3);
+}

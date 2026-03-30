@@ -1,0 +1,123 @@
+// ─── Component tokens ────────────────────────────────────────────────────────
+:host {
+  --fuse-card-bg: var(--fuse-color-surface, #ffffff);
+  --fuse-card-radius: var(--fuse-radius-lg, 12px);
+  --fuse-card-border-color: var(--fuse-color-border, #e2e8f0);
+  --fuse-card-border-width: 1px;
+
+  --fuse-card-shadow-elevated: var(--fuse-shadow-md, 0 4px 16px rgba(0, 0, 0, 0.08));
+  --fuse-card-shadow-hover: var(--fuse-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
+  --fuse-card-shadow-flat: none;
+
+  --fuse-card-padding-none: 0;
+  --fuse-card-padding-sm: var(--fuse-space-3, 0.75rem);
+  --fuse-card-padding-md: var(--fuse-space-5, 1.25rem);
+  --fuse-card-padding-lg: var(--fuse-space-7, 1.75rem);
+
+  --fuse-card-header-border: var(--fuse-color-border, #e2e8f0);
+  --fuse-card-footer-border: var(--fuse-color-border, #e2e8f0);
+  --fuse-card-transition: box-shadow 200ms ease, transform 200ms ease;
+
+  display: block;
+}
+
+// ─── Base card ────────────────────────────────────────────────────────────────
+.fuse-card {
+  background-color: var(--fuse-card-bg);
+  border-radius: var(--fuse-card-radius);
+  overflow: hidden;
+  transition: var(--fuse-card-transition);
+
+  // ─── Variants ───────────────────────────────────────────────────────────────
+  &--elevated {
+    box-shadow: var(--fuse-card-shadow-elevated);
+    border: none;
+  }
+
+  &--flat {
+    box-shadow: var(--fuse-card-shadow-flat);
+    border: none;
+    background-color: var(--fuse-color-surface-muted, #f8fafc);
+  }
+
+  &--outlined {
+    box-shadow: none;
+    border: var(--fuse-card-border-width) solid var(--fuse-card-border-color);
+  }
+
+  // ─── Padding modifiers ───────────────────────────────────────────────────────
+  &--padding-none .fuse-card__header,
+  &--padding-none .fuse-card__body,
+  &--padding-none .fuse-card__footer {
+    padding: var(--fuse-card-padding-none);
+  }
+
+  &--padding-sm .fuse-card__header,
+  &--padding-sm .fuse-card__body,
+  &--padding-sm .fuse-card__footer {
+    padding: var(--fuse-card-padding-sm);
+  }
+
+  &--padding-md .fuse-card__header,
+  &--padding-md .fuse-card__body,
+  &--padding-md .fuse-card__footer {
+    padding: var(--fuse-card-padding-md);
+  }
+
+  &--padding-lg .fuse-card__header,
+  &--padding-lg .fuse-card__body,
+  &--padding-lg .fuse-card__footer {
+    padding: var(--fuse-card-padding-lg);
+  }
+
+  // ─── Clickable ───────────────────────────────────────────────────────────────
+  &--clickable {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &--hovered {
+    &.fuse-card--elevated {
+      box-shadow: var(--fuse-card-shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    &.fuse-card--outlined {
+      border-color: var(--fuse-color-primary, #6366f1);
+    }
+  }
+}
+
+// ─── Slots ────────────────────────────────────────────────────────────────────
+.fuse-card__header {
+  &:empty { display: none; }
+}
+
+.fuse-card__body {
+  &:empty { display: none; }
+}
+
+.fuse-card__footer {
+  border-top: none;
+
+  &:not(:empty) {
+    border-top: var(--fuse-card-border-width) solid var(--fuse-card-footer-border);
+  }
+
+  &:empty { display: none; }
+}
+
+.fuse-card__header:not(:empty) ~ .fuse-card__body:not(:empty) {
+  border-top: var(--fuse-card-border-width) solid var(--fuse-card-header-border);
+}
+
+// ─── iOS overrides ────────────────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-card-radius: var(--fuse-radius-xl, 16px);
+  --fuse-card-shadow-elevated: var(--fuse-shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.06));
+}
+
+// ─── Material Design overrides ────────────────────────────────────────────────
+:host-context(.md) {
+  --fuse-card-radius: var(--fuse-radius-md, 8px);
+}

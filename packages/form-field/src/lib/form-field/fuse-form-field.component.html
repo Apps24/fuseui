@@ -1,0 +1,16 @@
+<div class="fuse-form-field" [class.fuse-form-field--error]="hasError()">
+  @if (label()) {
+    <fuse-label [required]="required()">{{ label() }}</fuse-label>
+  }
+  <ng-content select="[fuseControl]"></ng-content>
+  @if (helperText() && !hasError()) {
+    <p class="fuse-form-field__helper">{{ helperText() }}</p>
+  }
+  @if (hasError() && errorMessage()) {
+    <p class="fuse-form-field__error"
+       role="alert"
+       [attr.data-entering]="''">
+      {{ errorMessage() }}
+    </p>
+  }
+</div>

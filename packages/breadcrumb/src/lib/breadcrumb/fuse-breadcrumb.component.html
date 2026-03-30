@@ -1,0 +1,31 @@
+<nav aria-label="Breadcrumb">
+  <ol class="fuse-breadcrumb">
+    @for (item of visibleItems(); track $index) {
+      @if (item === null) {
+        <li>
+          <button class="fuse-breadcrumb__ellipsis"
+                  (click)="showAll.set(true)"
+                  aria-label="Show all breadcrumb items">
+            &hellip;
+          </button>
+        </li>
+      } @else {
+        <li [class.fuse-breadcrumb__item--last]="$last">
+          @if (item.href && !$last) {
+            <a [href]="item.href" class="fuse-breadcrumb__link">{{ item.label }}</a>
+          } @else {
+            <span class="fuse-breadcrumb__label"
+                  [attr.aria-current]="$last ? 'page' : null">
+              {{ item.label }}
+            </span>
+          }
+          @if (!$last) {
+            <span class="fuse-breadcrumb__sep" aria-hidden="true">
+              {{ separator() }}
+            </span>
+          }
+        </li>
+      }
+    }
+  </ol>
+</nav>

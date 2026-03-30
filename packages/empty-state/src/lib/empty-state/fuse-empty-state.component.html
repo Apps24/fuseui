@@ -1,0 +1,20 @@
+<div class="fuse-empty-state" [attr.data-entering]="''">
+  @if (icon()) {
+    <div class="fuse-empty-state__icon">
+      <fuse-icon [name]="icon()" size="xl"></fuse-icon>
+    </div>
+  } @else {
+    <ng-content select="[fuseEmptyStateIllustration]"></ng-content>
+  }
+  @if (title()) {
+    <p class="fuse-empty-state__title">{{ title() }}</p>
+  }
+  @if (description()) {
+    <p class="fuse-empty-state__description">{{ description() }}</p>
+  }
+  @if (actionLabel()) {
+    <fuse-button [variant]="actionVariant()" (clicked)="actionClick.emit()">
+      {{ actionLabel() }}
+    </fuse-button>
+  }
+</div>

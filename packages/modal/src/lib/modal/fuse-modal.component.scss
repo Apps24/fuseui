@@ -1,0 +1,87 @@
+:host {
+  display: block;
+}
+
+// ── Panel ─────────────────────────────────────────────────────────────────────
+
+.fuse-modal__panel {
+  --fuse-modal-radius:  var(--fuse-radius-lg, 12px);
+  --fuse-modal-bg:      var(--fuse-color-surface, #ffffff);
+  --fuse-modal-shadow:  var(--fuse-shadow-xl, 0 20px 60px rgba(0, 0, 0, 0.25));
+  --fuse-modal-padding: var(--fuse-space-6, 24px);
+
+  position: relative;
+  background: var(--fuse-modal-bg);
+  border-radius: var(--fuse-modal-radius);
+  box-shadow: var(--fuse-modal-shadow);
+  padding: var(--fuse-modal-padding);
+  overflow: auto;
+  outline: none;
+
+  // ── Sizes ─────────────────────────────────────────────────────────────────
+
+  &--sm {
+    width: min(90vw, 360px);
+    max-height: 90vh;
+  }
+
+  &--md {
+    width: min(90vw, 520px);
+    max-height: 90vh;
+  }
+
+  &--lg {
+    width: min(90vw, 760px);
+    max-height: 90vh;
+  }
+
+  &--fullscreen {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+}
+
+// ── Close button ─────────────────────────────────────────────────────────────
+
+.fuse-modal__close {
+  position: absolute;
+  top: var(--fuse-space-3, 12px);
+  right: var(--fuse-space-3, 12px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: var(--fuse-radius-sm, 4px);
+  color: var(--fuse-color-text-muted, #6b7280);
+  cursor: pointer;
+  transition: color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    background-color: var(--fuse-color-neutral-100, #f3f4f6);
+    color: var(--fuse-color-text, #111827);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--fuse-color-primary, #4f46e5);
+    outline-offset: 2px;
+  }
+}
+
+// ── Platform overrides ────────────────────────────────────────────────────────
+
+:host-context(.ios) {
+  .fuse-modal__panel {
+    --fuse-modal-radius: var(--fuse-radius-xl, 16px);
+  }
+}
+
+:host-context(.md) {
+  .fuse-modal__panel {
+    --fuse-modal-radius: var(--fuse-radius-md, 8px);
+  }
+}

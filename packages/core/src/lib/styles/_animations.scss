@@ -1,0 +1,111 @@
+/* ─── Fuse UI Animation System ─────────────────────────────────────────── */
+/* Inspired by HeroUI v3: data attributes drive all state transitions       */
+
+/* Base transition mixin */
+@mixin fuse-transition($props...) {
+  transition-property: #{$props};
+  transition-duration: var(--fuse-duration-base);
+  transition-timing-function: var(--fuse-easing-smooth);
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+
+/* Global reduced-motion override — app-level control */
+:root[data-reduce-motion="true"] * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* ─── Enter / Leave animations ─── */
+/* Usage: add [data-entering] when element enters DOM, [data-leaving] before removal */
+
+[data-entering] {
+  animation: fuse-fade-in var(--fuse-duration-enter)
+    var(--fuse-easing-spring-enter) both;
+  @media (prefers-reduced-motion: reduce) { animation: none; opacity: 1; }
+}
+
+[data-leaving] {
+  animation: fuse-fade-out var(--fuse-duration-exit)
+    var(--fuse-easing-ease-in) both;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+/* ─── Overlay enter (modal, drawer, dropdown) ─── */
+[data-overlay-entering] {
+  animation: fuse-overlay-in var(--fuse-duration-enter)
+    var(--fuse-easing-spring-enter) both;
+  @media (prefers-reduced-motion: reduce) { animation: none; opacity: 1; }
+}
+[data-overlay-leaving] {
+  animation: fuse-overlay-out var(--fuse-duration-exit)
+    var(--fuse-easing-ease-in) both;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+/* ─── Slide-up (bottom sheet, toast) ─── */
+[data-slide-entering] {
+  animation: fuse-slide-up var(--fuse-duration-enter)
+    var(--fuse-easing-spring-enter) both;
+  @media (prefers-reduced-motion: reduce) { animation: none; opacity: 1; }
+}
+[data-slide-leaving] {
+  animation: fuse-slide-down var(--fuse-duration-exit)
+    var(--fuse-easing-ease-in) both;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+/* ─── Interactive press state ─── */
+[data-pressed="true"] {
+  transform: scale(0.97);
+  transition: transform var(--fuse-duration-micro)
+    var(--fuse-easing-ease-out);
+  @media (prefers-reduced-motion: reduce) { transform: none; }
+}
+
+/* ─── Keyframes ─── */
+@keyframes fuse-fade-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes fuse-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.96); }
+}
+@keyframes fuse-overlay-in {
+  from { opacity: 0; transform: scale(0.94) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+@keyframes fuse-overlay-out {
+  from { opacity: 1; transform: scale(1) translateY(0); }
+  to   { opacity: 0; transform: scale(0.94) translateY(8px); }
+}
+@keyframes fuse-slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fuse-slide-down {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(16px); }
+}
+@keyframes fuse-shimmer {
+  from { background-position: 200% 0; }
+  to   { background-position: -200% 0; }
+}
+@keyframes fuse-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Tooltip ─── */
+[data-tooltip-entering] {
+  animation: fuse-tooltip-in var(--fuse-duration-fast)
+    var(--fuse-easing-spring-enter) both;
+  @media (prefers-reduced-motion: reduce) { animation: none; opacity: 1; }
+}
+[data-tooltip-leaving] {
+  animation: fuse-fade-out var(--fuse-duration-fast)
+    var(--fuse-easing-ease-in) both;
+}
+@keyframes fuse-tooltip-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}

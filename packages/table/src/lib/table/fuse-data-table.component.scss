@@ -1,0 +1,157 @@
+:host {
+  display: block;
+}
+
+// ── Container ─────────────────────────────────────────────────────────────────
+
+.fuse-table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--fuse-radius-lg, 8px);
+  border: 1px solid var(--fuse-color-border, #e5e7eb);
+  background: var(--fuse-color-surface, #ffffff);
+}
+
+// ── CdkTable ──────────────────────────────────────────────────────────────────
+
+.fuse-table {
+  width: 100%;
+  border-collapse: collapse;
+  display: table; // override CDK flex default to support sticky headers with native table
+
+  // Sticky header
+  &--sticky {
+    .fuse-table__th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: var(--fuse-color-surface-raised, #f9fafb);
+    }
+  }
+
+  // ── Header ───────────────────────────────────────────────────────────────────
+
+  &__header-row {
+    border-bottom: 1px solid var(--fuse-color-border, #e5e7eb);
+  }
+
+  &__th {
+    padding: var(--fuse-spacing-3, 12px) var(--fuse-spacing-4, 16px);
+    font-size: var(--fuse-font-size-xs, 0.75rem);
+    font-weight: var(--fuse-font-weight-semibold, 600);
+    color: var(--fuse-color-text-secondary, #6b7280);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    user-select: none;
+
+    &--sortable {
+      cursor: pointer;
+
+      &:hover {
+        color: var(--fuse-color-text-primary, #111827);
+        background: var(--fuse-color-surface-hover, #f3f4f6);
+      }
+    }
+  }
+
+  &__sort-icon {
+    display: inline-flex;
+    margin-left: var(--fuse-spacing-1, 4px);
+    vertical-align: middle;
+    opacity: 0.6;
+  }
+
+  // ── Rows ─────────────────────────────────────────────────────────────────────
+
+  &__row {
+    border-bottom: 1px solid var(--fuse-color-border-subtle, #f3f4f6);
+    transition: background var(--fuse-duration-fast, 150ms) ease;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover:not(&--skeleton) {
+      background: var(--fuse-color-surface-hover, #f9fafb);
+    }
+
+    // Enter animation on rows when data loads
+    &[data-entering] {
+      animation: fuse-table-row-enter var(--fuse-duration-base, 200ms) ease forwards;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+    }
+
+    &--skeleton {
+      pointer-events: none;
+    }
+  }
+
+  // ── Cells ─────────────────────────────────────────────────────────────────────
+
+  &__td {
+    padding: var(--fuse-spacing-3, 12px) var(--fuse-spacing-4, 16px);
+    font-size: var(--fuse-font-size-sm, 0.875rem);
+    color: var(--fuse-color-text-primary, #111827);
+    vertical-align: middle;
+  }
+
+  // ── Empty state ───────────────────────────────────────────────────────────────
+
+  &__empty {
+    padding: var(--fuse-spacing-8, 32px) var(--fuse-spacing-4, 16px);
+  }
+}
+
+// ── @defer skeleton ───────────────────────────────────────────────────────────
+
+.fuse-table-skeleton {
+  padding: var(--fuse-spacing-2, 8px) 0;
+
+  &__row {
+    display: flex;
+    padding: var(--fuse-spacing-3, 12px) var(--fuse-spacing-4, 16px);
+    gap: var(--fuse-spacing-4, 16px);
+    border-bottom: 1px solid var(--fuse-color-border-subtle, #f3f4f6);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__cell {
+    flex: 1;
+  }
+}
+
+// ── Row enter animation ────────────────────────────────────────────────────────
+
+@keyframes fuse-table-row-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ── Ionic adaptations ─────────────────────────────────────────────────────────
+
+:host-context(.ios) {
+  .fuse-table__th,
+  .fuse-table__td {
+    padding: var(--fuse-spacing-4, 16px);
+  }
+}
+
+:host-context(.md) {
+  .fuse-table__th,
+  .fuse-table__td {
+    padding: var(--fuse-spacing-3, 12px) var(--fuse-spacing-4, 16px);
+  }
+}

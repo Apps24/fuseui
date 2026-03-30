@@ -1,0 +1,234 @@
+// ─── Host token overrides ────────────────────────────────────────────────────
+:host {
+  --fuse-select-bg:           var(--fuse-color-bg-surface);
+  --fuse-select-border:       var(--fuse-color-border-default);
+  --fuse-select-border-focus: var(--fuse-color-border-focus);
+  --fuse-select-border-error: var(--fuse-color-border-error);
+  --fuse-select-radius:       var(--fuse-radius-md);
+  --fuse-select-color:        var(--fuse-color-text-primary);
+  --fuse-select-placeholder:  var(--fuse-color-text-disabled);
+  --fuse-select-font-size:    var(--fuse-font-size-md);
+  --fuse-select-py:           var(--fuse-spacing-2);
+  --fuse-select-px:           var(--fuse-spacing-3);
+  --fuse-select-panel-bg:     var(--fuse-color-bg-surface);
+  --fuse-select-panel-shadow: var(--fuse-shadow-lg);
+  --fuse-select-option-hover: var(--fuse-color-bg-subtle, var(--fuse-color-bg-surface));
+
+  display: block;
+}
+
+// ─── Ionic platform overrides ─────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-select-radius: var(--fuse-radius-lg);
+}
+
+:host-context(.md) {
+  --fuse-select-radius: var(--fuse-radius-sm);
+}
+
+// ─── Root wrapper ─────────────────────────────────────────────────────────────
+.fuse-select {
+  display:        flex;
+  flex-direction: column;
+  gap:            var(--fuse-spacing-1);
+}
+
+// ─── Label ────────────────────────────────────────────────────────────────────
+.fuse-select__label {
+  font-size:   var(--fuse-font-size-sm);
+  font-weight: var(--fuse-font-weight-medium);
+  color:       var(--fuse-select-color);
+  line-height: 1.25;
+}
+
+// ─── Trigger button ───────────────────────────────────────────────────────────
+.fuse-select__trigger {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  gap:             var(--fuse-spacing-2);
+  width:           100%;
+  padding:         var(--fuse-select-py) var(--fuse-select-px);
+  font-size:       var(--fuse-select-font-size);
+  color:           var(--fuse-select-color);
+  background:      var(--fuse-select-bg);
+  border:          1.5px solid var(--fuse-select-border);
+  border-radius:   var(--fuse-select-radius);
+  cursor:          pointer;
+  font-family:     inherit;
+  text-align:      left;
+  transition:      border-color 0.15s, box-shadow 0.15s;
+
+  &:focus-visible {
+    outline:      none;
+    border-color: var(--fuse-select-border-focus);
+    box-shadow:   0 0 0 3px color-mix(in srgb, var(--fuse-color-primary) 25%, transparent);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor:  not-allowed;
+  }
+
+  .fuse-select--open & {
+    border-color: var(--fuse-select-border-focus);
+    box-shadow:   0 0 0 3px color-mix(in srgb, var(--fuse-color-primary) 25%, transparent);
+  }
+
+  .fuse-select--error & {
+    border-color: var(--fuse-select-border-error);
+
+    &:focus-visible,
+    .fuse-select--open & {
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--fuse-color-danger) 25%, transparent);
+    }
+  }
+}
+
+// ─── Size variants ────────────────────────────────────────────────────────────
+.fuse-select--sm .fuse-select__trigger {
+  --fuse-select-py:        var(--fuse-spacing-1);
+  --fuse-select-px:        var(--fuse-spacing-2);
+  --fuse-select-font-size: var(--fuse-font-size-sm);
+}
+
+.fuse-select--lg .fuse-select__trigger {
+  --fuse-select-py:        var(--fuse-spacing-3);
+  --fuse-select-px:        var(--fuse-spacing-4);
+  --fuse-select-font-size: var(--fuse-font-size-lg);
+}
+
+// ─── Value / placeholder ──────────────────────────────────────────────────────
+.fuse-select__value {
+  flex:          1;
+  min-width:     0;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+  white-space:   nowrap;
+
+  &--placeholder {
+    color: var(--fuse-select-placeholder);
+  }
+}
+
+// ─── Arrow icon ───────────────────────────────────────────────────────────────
+.fuse-select__arrow {
+  flex-shrink: 0;
+  transition:  transform 0.2s;
+  color:       var(--fuse-color-text-secondary, var(--fuse-select-placeholder));
+
+  &--open {
+    transform: rotate(180deg);
+  }
+}
+
+// ─── Panel (rendered in CDK overlay portal) ───────────────────────────────────
+.fuse-select__panel {
+  background:    var(--fuse-select-panel-bg);
+  border:        1.5px solid var(--fuse-select-border);
+  border-radius: var(--fuse-select-radius);
+  box-shadow:    var(--fuse-select-panel-shadow);
+  overflow:      hidden;
+  max-height:    240px;
+  overflow-y:    auto;
+  outline:       none;
+}
+
+// ─── Search input ─────────────────────────────────────────────────────────────
+.fuse-select__search {
+  padding:    var(--fuse-spacing-2);
+  border-bottom: 1px solid var(--fuse-select-border);
+  position:   sticky;
+  top:        0;
+  background: var(--fuse-select-panel-bg);
+  z-index:    1;
+}
+
+.fuse-select__search-input {
+  width:        100%;
+  padding:      var(--fuse-spacing-1) var(--fuse-spacing-2);
+  font-size:    var(--fuse-font-size-sm);
+  color:        var(--fuse-select-color);
+  background:   transparent;
+  border:       1.5px solid var(--fuse-select-border);
+  border-radius: var(--fuse-radius-sm);
+  outline:      none;
+  font-family:  inherit;
+  box-sizing:   border-box;
+
+  &::placeholder { color: var(--fuse-select-placeholder); }
+  &:focus { border-color: var(--fuse-select-border-focus); }
+}
+
+// ─── Empty state ─────────────────────────────────────────────────────────────
+.fuse-select__empty {
+  padding:    var(--fuse-spacing-3) var(--fuse-spacing-4);
+  font-size:  var(--fuse-font-size-sm);
+  color:      var(--fuse-select-placeholder);
+  text-align: center;
+}
+
+// ─── Option ──────────────────────────────────────────────────────────────────
+.fuse-select__option {
+  display:         flex;
+  align-items:     center;
+  gap:             var(--fuse-spacing-2);
+  width:           100%;
+  padding:         var(--fuse-spacing-2) var(--fuse-spacing-3);
+  font-size:       var(--fuse-font-size-md);
+  color:           var(--fuse-select-color);
+  background:      transparent;
+  border:          none;
+  cursor:          pointer;
+  text-align:      left;
+  font-family:     inherit;
+  transition:      background 0.1s;
+
+  &:hover:not(:disabled),
+  &--highlighted:not(:disabled) {
+    background: var(--fuse-select-option-hover);
+  }
+
+  &--selected {
+    color:       var(--fuse-color-primary);
+    font-weight: var(--fuse-font-weight-medium);
+  }
+
+  &--disabled {
+    opacity: 0.4;
+    cursor:  not-allowed;
+  }
+}
+
+.fuse-select__option-label {
+  flex:          1;
+  min-width:     0;
+  overflow:      hidden;
+  text-overflow: ellipsis;
+  white-space:   nowrap;
+}
+
+// ─── Checkbox (multiple mode) ─────────────────────────────────────────────────
+.fuse-select__checkbox {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  width:           16px;
+  height:          16px;
+  border:          1.5px solid var(--fuse-select-border);
+  border-radius:   var(--fuse-radius-sm);
+  flex-shrink:     0;
+  color:           var(--fuse-color-primary);
+
+  .fuse-select__option--selected & {
+    background:    var(--fuse-color-primary);
+    border-color:  var(--fuse-color-primary);
+    color:         var(--fuse-color-on-primary);
+  }
+}
+
+// ─── Check icon (single mode) ─────────────────────────────────────────────────
+.fuse-select__check {
+  flex-shrink: 0;
+  color:       var(--fuse-color-primary);
+}

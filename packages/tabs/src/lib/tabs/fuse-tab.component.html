@@ -1,0 +1,8 @@
+<div
+  role="tabpanel"
+  [id]="'panel-' + tabId()"
+  [attr.aria-labelledby]="tabId()"
+  [hidden]="!isActive()"
+  class="fuse-tab__panel">
+  <ng-content></ng-content>
+</div>

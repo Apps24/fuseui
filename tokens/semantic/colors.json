@@ -1,0 +1,24 @@
+{
+  "color": {
+    "primary":        { "$value": "{color.blue.500}" },
+    "primary-dark":   { "$value": "{color.blue.600}" },
+    "on-primary":     { "$value": "{color.neutral.0}" },
+    "secondary":      { "$value": "{color.blue.100}" },
+    "on-secondary":   { "$value": "{color.blue.900}" },
+    "success":        { "$value": "{color.green.500}" },
+    "on-success":     { "$value": "{color.neutral.0}" },
+    "warning":        { "$value": "{color.amber.500}" },
+    "on-warning":     { "$value": "{color.neutral.900}" },
+    "danger":         { "$value": "{color.red.500}" },
+    "on-danger":      { "$value": "{color.neutral.0}" },
+    "bg-surface":     { "$value": "{color.neutral.0}" },
+    "bg-elevated":    { "$value": "{color.neutral.50}" },
+    "bg-overlay":     { "$value": "rgba(0,0,0,0.5)" },
+    "text-primary":   { "$value": "{color.neutral.900}" },
+    "text-secondary": { "$value": "{color.neutral.600}" },
+    "text-disabled":  { "$value": "{color.neutral.400}" },
+    "border-default": { "$value": "{color.neutral.200}" },
+    "border-focus":   { "$value": "{color.blue.500}" },
+    "border-error":   { "$value": "{color.red.500}" }
+  }
+}

@@ -1,0 +1,11 @@
+// ─── Host ─────────────────────────────────────────────────────────────────────
+
+:host {
+  display: block;
+  border: 1px solid var(--fuse-color-border-default);
+  border-radius: var(--fuse-radius-md, 8px);
+  overflow: hidden;
+}
+
+:host-context(.ios) { border-radius: var(--fuse-radius-lg, 12px); }
+:host-context(.md)  { border-radius: var(--fuse-radius-md, 8px); }

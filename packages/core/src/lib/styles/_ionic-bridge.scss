@@ -1,0 +1,25 @@
+/* Ionic 8 bridge — targets :root (Ionic 8 uses :root NOT body) */
+:root {
+  --ion-color-primary:          var(--fuse-color-primary);
+  --ion-color-primary-shade:    var(--fuse-color-primary-hover);
+  --ion-color-primary-contrast: var(--fuse-color-on-primary);
+  --ion-color-secondary:        var(--fuse-color-secondary);
+  --ion-color-secondary-contrast: var(--fuse-color-on-secondary);
+  --ion-color-success:          var(--fuse-color-success);
+  --ion-color-warning:          var(--fuse-color-warning);
+  --ion-color-danger:           var(--fuse-color-danger);
+  --ion-background-color:       var(--fuse-color-bg-surface);
+  --ion-text-color:             var(--fuse-color-text-primary);
+  --ion-border-color:           var(--fuse-color-border-default);
+  --ion-font-family:            var(--fuse-font-family);
+  --ion-toolbar-background:     var(--fuse-color-bg-elevated);
+  --ion-toolbar-color:          var(--fuse-color-text-primary);
+  --ion-tab-bar-background:     var(--fuse-color-bg-surface);
+  --ion-tab-bar-border-color:   var(--fuse-color-border-default);
+  --ion-item-background:        var(--fuse-color-bg-surface);
+  --ion-card-background:        var(--fuse-color-bg-elevated);
+}
+
+/* Safe area helpers */
+.fuse-safe-top    { padding-top:    var(--ion-safe-area-top, env(safe-area-inset-top, 0px)); }
+.fuse-safe-bottom { padding-bottom: var(--ion-safe-area-bottom, env(safe-area-inset-bottom, 0px)); }

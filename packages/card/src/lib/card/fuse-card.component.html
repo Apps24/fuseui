@@ -1,0 +1,15 @@
+<!-- Slot-based layout — wrappers hidden via :empty CSS when slot is unused -->
+<div class="fuse-card__header">
+  <ng-content select="[fuseCardHeader]"></ng-content>
+</div>
+
+<div class="fuse-card__body">
+  <ng-content select="[fuseCardBody]"></ng-content>
+</div>
+
+<div class="fuse-card__footer">
+  <ng-content select="[fuseCardFooter]"></ng-content>
+</div>
+
+<!-- Default slot for unslotted content -->
+<ng-content></ng-content>

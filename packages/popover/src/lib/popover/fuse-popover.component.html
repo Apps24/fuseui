@@ -1,0 +1,14 @@
+<div class="fuse-popover__trigger"
+     (click)="onTriggerClick()"
+     (mouseenter)="onTriggerMouseEnter()"
+     (mouseleave)="onTriggerMouseLeave()">
+  <ng-content select="[fusePopoverTrigger]"></ng-content>
+</div>
+
+@if (isOpen()) {
+  <div #panel
+       class="fuse-popover__panel"
+       [attr.data-placement]="placement()">
+    <ng-content select="[fusePopoverContent]"></ng-content>
+  </div>
+}

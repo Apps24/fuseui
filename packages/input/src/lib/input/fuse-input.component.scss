@@ -1,0 +1,133 @@
+// ─── Host token overrides ────────────────────────────────────────────────────
+:host {
+  --fuse-input-bg:           var(--fuse-color-bg-surface);
+  --fuse-input-border:       var(--fuse-color-border-default);
+  --fuse-input-border-focus: var(--fuse-color-border-focus);
+  --fuse-input-border-error: var(--fuse-color-border-error);
+  --fuse-input-radius:       var(--fuse-radius-md);
+  --fuse-input-color:        var(--fuse-color-text-primary);
+  --fuse-input-placeholder:  var(--fuse-color-text-disabled);
+  --fuse-input-font-size:    var(--fuse-font-size-md);
+  --fuse-input-py:           var(--fuse-spacing-2);
+  --fuse-input-px:           var(--fuse-spacing-3);
+
+  display: block;
+}
+
+// ─── Ionic platform overrides ─────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-input-radius: var(--fuse-radius-lg);
+}
+
+:host-context(.md) {
+  --fuse-input-radius: var(--fuse-radius-sm);
+}
+
+// ─── Root wrapper ─────────────────────────────────────────────────────────────
+.fuse-input {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fuse-spacing-1);
+}
+
+// ─── Label ────────────────────────────────────────────────────────────────────
+.fuse-input__label {
+  font-size: var(--fuse-font-size-sm);
+  font-weight: var(--fuse-font-weight-medium);
+  color: var(--fuse-input-color);
+  line-height: 1.25;
+
+  &--required::after {
+    content: ' *';
+    color: var(--fuse-color-danger);
+  }
+}
+
+// ─── Input wrapper (border + flex row) ────────────────────────────────────────
+.fuse-input__wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--fuse-input-bg);
+  border: 1.5px solid var(--fuse-input-border);
+  border-radius: var(--fuse-input-radius);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  overflow: hidden;
+
+  .fuse-input--focused & {
+    border-color: var(--fuse-input-border-focus);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--fuse-color-primary) 25%, transparent);
+  }
+
+  .fuse-input--error & {
+    border-color: var(--fuse-input-border-error);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--fuse-color-danger) 25%, transparent);
+  }
+
+  .fuse-input--disabled & {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .fuse-input--readonly & {
+    background: var(--fuse-color-bg-muted, var(--fuse-color-bg-surface));
+  }
+}
+
+// ─── Input field ─────────────────────────────────────────────────────────────
+.fuse-input__field {
+  flex: 1;
+  min-width: 0;
+  padding:    var(--fuse-input-py) var(--fuse-input-px);
+  font-size:  var(--fuse-input-font-size);
+  color:      var(--fuse-input-color);
+  background: transparent;
+  border:     none;
+  outline:    none;
+  font-family: inherit;
+  line-height: 1.5;
+
+  &::placeholder { color: var(--fuse-input-placeholder); }
+  &:disabled      { cursor: not-allowed; }
+  &[readonly]     { cursor: default; }
+}
+
+// ─── Prefix / Suffix slots ────────────────────────────────────────────────────
+.fuse-input__prefix,
+.fuse-input__suffix {
+  display: contents;
+
+  &:not(:empty) {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 var(--fuse-spacing-2);
+    color: var(--fuse-color-text-secondary, var(--fuse-input-color));
+  }
+}
+
+// ─── Size variants ────────────────────────────────────────────────────────────
+.fuse-input--sm {
+  --fuse-input-py:        var(--fuse-spacing-1);
+  --fuse-input-px:        var(--fuse-spacing-2);
+  --fuse-input-font-size: var(--fuse-font-size-sm);
+}
+
+.fuse-input--lg {
+  --fuse-input-py:        var(--fuse-spacing-3);
+  --fuse-input-px:        var(--fuse-spacing-4);
+  --fuse-input-font-size: var(--fuse-font-size-lg);
+}
+
+// ─── Error message ────────────────────────────────────────────────────────────
+.fuse-input__error {
+  font-size:  var(--fuse-font-size-sm);
+  color:      var(--fuse-color-danger);
+  line-height: 1.25;
+}
+
+// ─── Helper text ──────────────────────────────────────────────────────────────
+.fuse-input__helper {
+  font-size:  var(--fuse-font-size-sm);
+  color:      var(--fuse-color-text-secondary, var(--fuse-input-placeholder));
+  line-height: 1.25;
+}

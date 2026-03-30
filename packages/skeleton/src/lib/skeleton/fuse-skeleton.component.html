@@ -1,0 +1,20 @@
+<!-- Multi-line text skeleton -->
+@if (variant() === 'text' && lines() > 1) {
+  @for (i of lineArray(); track i) {
+    <span
+      class="fuse-skeleton fuse-skeleton--text"
+      [style.width]="lineWidth(i)"
+      [style.height]="height()"
+    ></span>
+  }
+} @else {
+  <!-- Single element (text line, circle, or rect) -->
+  <span
+    class="fuse-skeleton"
+    [class.fuse-skeleton--text]="variant() === 'text'"
+    [class.fuse-skeleton--circle]="variant() === 'circle'"
+    [class.fuse-skeleton--rect]="variant() === 'rect'"
+    [style.width]="variant() === 'circle' ? height() : width()"
+    [style.height]="height()"
+  ></span>
+}

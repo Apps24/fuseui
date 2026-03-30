@@ -1,0 +1,26 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true
+  },
+  "exclude": ["../**/*.spec.ts"],
+  "include": [
+    "../src/**/*.ts",
+    "../../button/src/**/*.ts",
+    "../../icon/src/**/*.ts",
+    "../../input/src/**/*.ts",
+    "../../label/src/**/*.ts",
+    "../../select/src/**/*.ts",
+    "../../checkbox/src/**/*.ts",
+    "../../card/src/**/*.ts",
+    "../../badge/src/**/*.ts",
+    "../../avatar/src/**/*.ts",
+    "../../skeleton/src/**/*.ts",
+    "../../toast/src/**/*.ts",
+    "../../modal/src/**/*.ts",
+    "../../alert/src/**/*.ts",
+    "../../spinner/src/**/*.ts",
+    "*.js",
+    "*.ts"
+  ]
+}

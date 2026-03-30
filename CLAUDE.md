@@ -1,23 +1,86 @@
-<!-- nx configuration start-->
-<!-- Leave the start & end comments to automatically receive updates. -->
+# Fuse UI — Project Rules (Angular 18+)
 
-# General Guidelines for working with Nx
+## Identity
+- Library: Fuse UI
+- Workspace: fuseui/
+- npm scope: @fuse/
+- CSS token prefix: --fuse-
+- Selector prefix: fuse-
+- Story title: "Fuse / ComponentName"
 
-- For navigating/exploring the workspace, invoke the `nx-workspace` skill first - it has patterns for querying projects, targets, and dependencies
-- When running tasks (for example build, lint, test, e2e, etc.), always prefer running the task through `nx` (i.e. `nx run`, `nx run-many`, `nx affected`) instead of using the underlying tooling directly
-- Prefix nx commands with the workspace's package manager (e.g., `pnpm nx build`, `npm exec nx test`) - avoids using globally installed CLI
-- You have access to the Nx MCP server and its tools, use them to help the user
-- For Nx plugin best practices, check `node_modules/@nx/<plugin>/PLUGIN.md`. Not all plugins have this file - proceed without it if unavailable.
-- NEVER guess CLI flags - always check nx_docs or `--help` first when unsure
+## Version targets
+- Angular peerDependency: >=18.0.0
+- Ionic peerDependency: >=8.0.0 (optional)
+- Node: >=20.0.0
+- rxjs: >=7.4.0
+- TypeScript: >=5.4.0
 
-## Scaffolding & Generators
+## Angular 18+ APIs — USE THESE
 
-- For scaffolding tasks (creating apps, libs, project structure, setup), ALWAYS invoke the `nx-generate` skill FIRST before exploring or calling MCP tools
+### Inputs / Outputs / Two-way binding
+- ALWAYS: input<T>() for optional inputs
+- ALWAYS: input.required<T>() for mandatory inputs
+- ALWAYS: output<T>() for outputs
+- ALWAYS: model<T>() for two-way bindable values (replaces @Input+@Output pair)
+- NEVER: @Input() decorator (unless integrating legacy CDK APIs)
+- NEVER: @Output() EventEmitter (unless integrating legacy CDK APIs)
 
-## When to use nx_docs
+### Template control flow
+- ALWAYS: @if, @for (track required), @switch, @empty
+- ALWAYS: @defer for heavy components (Data Table, Date Picker)
+- NEVER: *ngIf, *ngFor, *ngSwitch, CommonModule in standalone components
+- NOTE: @for MUST include track expression: @for (item of items(); track item.id)
 
-- USE for: advanced config options, unfamiliar flags, migration guides, plugin configuration, edge cases
-- DON'T USE for: basic generator syntax (`nx g @nx/react:app`), standard commands, things you already know
-- The `nx-generate` skill handles generator discovery internally - don't call nx_docs just to look up generator syntax
+### Signal queries
+- ALWAYS: viewChild() / viewChildren() for template refs
+- ALWAYS: contentChild() / contentChildren() for projected content
+- NEVER: @ViewChild, @ViewChildren, @ContentChild, @ContentChildren decorators
 
-<!-- nx configuration end-->
+### Reactivity
+- signals, computed(), effect() — everywhere (services, components)
+- linkedSignal() — Angular 19+, use only if targeting 19+
+- takeUntilDestroyed(this.destroyRef) — for Observable subscription cleanup
+- inject(DestroyRef) as class field initialiser
+
+### Form integration
+- model<T>() for components with [(value)] two-way binding
+- ALSO implement ControlValueAccessor when ngModel / ReactiveFormsModule integration needed
+- Both model() and CVA can coexist in the same component
+
+## Styling — STRICT RULES
+- ZERO hardcoded colours in any .scss
+- ALL values via --fuse-* CSS custom properties
+- :host-context(.ios) AND :host-context(.md) on EVERY component
+- Animation: data-state attributes drive transitions (data-entering, data-leaving, data-pressed)
+- @media (prefers-reduced-motion: reduce) on ALL animated properties
+- [data-reduce-motion="true"] on :root overrides all animations (app-level)
+
+## Animation principles (HeroUI-inspired)
+- Transitions tied to data attributes, not class toggles
+- Spring-feel: cubic-bezier(0.34, 1.56, 0.64, 1) for enter, ease-out for exit
+- enter-scale: from 0.95 → 1 + opacity 0 → 1
+- exit-scale: from 1 → 0.95 + opacity 1 → 0
+- Duration: micro 100ms, fast 150ms, base 200ms, slow 300ms, enter 250ms
+- Interruptible: use CSS transitions (not keyframes) on interactive elements
+- Always include @media (prefers-reduced-motion: reduce) fallback
+
+## Theme system
+- data-theme attribute on :root controls active theme
+- Themes: light (default), dark, ocean, rose, + consumer-defined
+- All theme tokens defined as CSS custom property overrides in :root[data-theme="X"]
+- FuseThemeService manages switching, persists to localStorage
+
+## Ionic 8+ specifics
+- Dark mode: import '@ionic/angular/css/palettes/dark.class.css' in angular.json
+- Dark palette targets :root (NOT body)
+- ion-palette-dark class on :root for programmatic dark mode
+- Safe areas: var(--ion-safe-area-top/bottom)
+- @Optional() on all Ionic service injections
+
+## File structure
+packages/[name]/src/lib/
+  fuse-[name].component.ts
+  fuse-[name].component.html   (separate file for 18+ control flow readability)
+  fuse-[name].component.scss
+  fuse-[name].component.spec.ts
+  fuse-[name].component.stories.ts

@@ -1,0 +1,12 @@
+<span [class]="hostClass()">
+  <ng-content></ng-content>
+  @if (closable()) {
+    <button
+      class="fuse-chip__close"
+      type="button"
+      aria-label="Remove"
+      (click)="$event.stopPropagation(); chipClose.emit()">
+      <fuse-icon name="x" size="xs"></fuse-icon>
+    </button>
+  }
+</span>

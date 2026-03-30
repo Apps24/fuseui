@@ -1,0 +1,120 @@
+// ─── Component tokens ────────────────────────────────────────────────────────
+:host {
+  --fuse-radio-size-sm: 14px;
+  --fuse-radio-size-md: 18px;
+  --fuse-radio-size-lg: 22px;
+  --fuse-radio-dot-ratio: 0.45;
+
+  --fuse-radio-border-color: var(--fuse-color-border, #cbd5e1);
+  --fuse-radio-bg: var(--fuse-color-surface, #ffffff);
+  --fuse-radio-checked-bg: var(--fuse-color-surface, #ffffff);
+  --fuse-radio-checked-border: var(--fuse-color-primary, #6366f1);
+  --fuse-radio-dot-color: var(--fuse-color-primary, #6366f1);
+  --fuse-radio-focus-ring: var(--fuse-color-primary-alpha, rgba(99, 102, 241, 0.25));
+  --fuse-radio-disabled-bg: var(--fuse-color-surface-muted, #f1f5f9);
+  --fuse-radio-disabled-border: var(--fuse-color-border-muted, #e2e8f0);
+  --fuse-radio-disabled-dot: var(--fuse-color-text-muted, #94a3b8);
+  --fuse-radio-label-color: var(--fuse-color-text, #1e293b);
+  --fuse-radio-label-size: var(--fuse-font-size-md, 0.875rem);
+  --fuse-radio-gap: var(--fuse-space-2, 0.5rem);
+
+  display: inline-flex;
+}
+
+// ─── Label wrapper ────────────────────────────────────────────────────────────
+.fuse-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fuse-radio-gap);
+  cursor: pointer;
+  user-select: none;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// ─── Hidden native input ──────────────────────────────────────────────────────
+.fuse-radio__native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+
+  &:focus-visible ~ .fuse-radio__circle {
+    outline: 2px solid var(--fuse-radio-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+// ─── Outer circle ─────────────────────────────────────────────────────────────
+.fuse-radio__circle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fuse-radio-size-md);
+  height: var(--fuse-radio-size-md);
+  border-radius: 50%;
+  border: 2px solid var(--fuse-radio-border-color);
+  background-color: var(--fuse-radio-bg);
+  transition: border-color 150ms ease, background-color 150ms ease;
+
+  .fuse-radio--sm & {
+    width: var(--fuse-radio-size-sm);
+    height: var(--fuse-radio-size-sm);
+  }
+
+  .fuse-radio--lg & {
+    width: var(--fuse-radio-size-lg);
+    height: var(--fuse-radio-size-lg);
+  }
+
+  .fuse-radio--checked & {
+    border-color: var(--fuse-radio-checked-border);
+    background-color: var(--fuse-radio-checked-bg);
+  }
+
+  .fuse-radio--disabled & {
+    background-color: var(--fuse-radio-disabled-bg);
+    border-color: var(--fuse-radio-disabled-border);
+  }
+}
+
+// ─── Inner dot ────────────────────────────────────────────────────────────────
+.fuse-radio__dot {
+  display: block;
+  width: calc(var(--fuse-radio-size-md) * var(--fuse-radio-dot-ratio));
+  height: calc(var(--fuse-radio-size-md) * var(--fuse-radio-dot-ratio));
+  border-radius: 50%;
+  background-color: var(--fuse-radio-dot-color);
+
+  .fuse-radio--disabled & {
+    background-color: var(--fuse-radio-disabled-dot);
+  }
+}
+
+// ─── Label text ───────────────────────────────────────────────────────────────
+.fuse-radio__label {
+  color: var(--fuse-radio-label-color);
+  font-size: var(--fuse-radio-label-size);
+  line-height: 1.4;
+}
+
+// ─── iOS overrides ────────────────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-radio-size-md: 20px;
+  --fuse-radio-size-sm: 16px;
+  --fuse-radio-size-lg: 24px;
+}
+
+// ─── Material Design overrides ────────────────────────────────────────────────
+:host-context(.md) {
+  --fuse-radio-size-md: 20px;
+}

@@ -1,285 +1,154 @@
-# Nx Angular Repository
+# Fuse UI
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Angular 18+ and Ionic 8+ component library — signal-based, multi-theme, animated, fully standalone.
 
-✨ A repository showcasing key [Nx](https://nx.dev) features for Angular monorepos ✨
-## Finish your Nx platform setup
+## Features
 
-🚀 [Finish setting up your workspace](https://cloud.nx.app/connect/QcIiUCyEXl) to get faster builds with remote caching, distributed task execution, and self-healing CI. [Learn more about Nx Cloud](https://nx.dev/ci/intro/why-nx-cloud).
+- **Signal-based inputs and outputs** — `input()`, `output()`, `model()` throughout; zero `@Input`/`@Output` decorators
+- **Multi-theme: light, dark, ocean, rose + custom** — `data-theme` on `:root`; all `--fuse-*` CSS custom properties update instantly
+- **Fluid typography with CSS `clamp()`** — text scales automatically across breakpoints
+- **HeroUI-inspired animations with reduced-motion support** — spring-feel enter/exit driven by `data-state` attributes; `prefers-reduced-motion` respected everywhere
+- **Works with Angular 18, 19, 20, 21** — peer dependency `>=18.0.0`
+- **Compatible with Ionic 8+** — `:host-context(.ios)` and `:host-context(.md)` on every component; `@ionic/angular` is optional
 
-## 📦 Project Overview
+## Packages
 
-This repository demonstrates a production-ready Angular monorepo with:
+| Package | Description |
+|---|---|
+| `@fuse/core` | Theme service, icon registry, design tokens |
+| `@fuse/button` | Button with variants, loading state, icon slots |
+| `@fuse/icon` | SVG icon component backed by registry |
+| `@fuse/input` | Text input and textarea with label, error, prefix/suffix |
+| `@fuse/label` | Form label with required asterisk |
+| `@fuse/select` | Dropdown select with CDK overlay |
+| `@fuse/checkbox` | Checkbox, checkbox group, radio, radio group |
+| `@fuse/card` | Card with header, body, footer slots |
+| `@fuse/badge` | Status badge — solid, flat, outline × 5 colours + dot mode |
+| `@fuse/avatar` | Avatar with image and initials fallback, status dot |
+| `@fuse/skeleton` | Skeleton loader — text, circle, rect variants |
+| `@fuse/toast` | Toast notifications with service API |
+| `@fuse/modal` | Modal/dialog service with CDK overlay and focus trap |
+| `@fuse/alert` | Inline alert — info, success, warning, danger |
+| `@fuse/spinner` | Loading spinner with overlay mode |
+| `@fuse/tabs` | Tab bar with animated underline indicator |
+| `@fuse/accordion` | Collapsible accordion with spring animation |
+| `@fuse/chip` | Selectable/closable chip |
+| `@fuse/tooltip` | Tooltip directive with CDK overlay |
+| `@fuse/popover` | Popover with click/hover trigger and placement |
+| `@fuse/dropdown` | Dropdown menu with keyboard navigation |
+| `@fuse/breadcrumb` | Breadcrumb with truncation and expand |
+| `@fuse/pagination` | Page navigator with ellipsis algorithm |
+| `@fuse/slider` | Single and range slider with marks and tooltip |
+| `@fuse/form-field` | Form field wrapper with label, helper, error animation |
+| `@fuse/empty-state` | Empty state with icon, illustration slot, and action |
+| `@fuse/table` | Data table with CDK Table, sort, and loading skeleton |
 
-- **2 Applications**
+## Quick start
 
-  - `shop` - Angular e-commerce application with product listings and detail views
-  - `api` - Backend API with Docker support serving product data
-
-- **6 Libraries**
-
-  - `@org/feature-products` - Product listing feature (Angular)
-  - `@org/feature-product-detail` - Product detail feature (Angular)
-  - `@org/data` - Data access layer for shop features
-  - `@org/shared-ui` - Shared UI components
-  - `@org/models` - Shared data models
-  - `@org/products` - API product service library
-
-- **E2E Testing**
-  - `shop-e2e` - Playwright tests for the shop application
-
-## 🚀 Quick Start
-
-```bash
-# Clone the repository
-git clone <your-fork-url>
-cd <your-repository-name>
-
-# Install dependencies
-# (Note: You may need --legacy-peer-deps)
-npm install
-
-# Serve the Angular shop application (this will simultaneously serve the API backend)
-npx nx serve shop
-
-# ...or you can serve the API separately
-npx nx serve api
-
-# Build all projects
-npx nx run-many -t build
-
-# Run tests
-npx nx run-many -t test
-
-# Lint all projects
-npx nx run-many -t lint
-
-# Run e2e tests
-npx nx e2e shop-e2e
-
-# Run tasks in parallel
-
-npx nx run-many -t lint test build e2e --parallel=3
-
-# Visualize the project graph
-npx nx graph
-```
-
-## ⭐ Featured Nx Capabilities
-
-This repository showcases several powerful Nx features:
-
-### 1. 🔒 Module Boundaries
-
-Enforces architectural constraints using tags. Each project has specific dependencies it can use:
-
-- `scope:shared` - Can be used by all projects
-- `scope:shop` - Shop-specific libraries
-- `scope:api` - API-specific libraries
-- `type:feature` - Feature libraries
-- `type:data` - Data access libraries
-- `type:ui` - UI component libraries
-
-**Try it out:**
+Install only what you need:
 
 ```bash
-# See the current project graph and boundaries
-npx nx graph
-
-# View a specific project's details
-npx nx show project shop --web
+npm install @fuse/core @fuse/button @fuse/input
 ```
 
-[Learn more about module boundaries →](https://nx.dev/features/enforce-module-boundaries)
+Import the standalone components directly — no module needed:
 
-### 2. 🐳 Docker Integration
+```typescript
+import { FuseButtonComponent } from '@fuse/button';
+import { FuseInputComponent }  from '@fuse/input';
 
-The API project includes Docker support with automated targets and release management:
-
-```bash
-# Build Docker image
-npx nx docker:build api
-
-# Run Docker container
-npx nx docker:run api
-
-# Release with automatic Docker image versioning
-npx nx release
+@Component({
+  standalone: true,
+  imports: [FuseButtonComponent, FuseInputComponent],
+  template: `...`,
+})
+export class MyComponent {}
 ```
 
-**Nx Release for Docker:** The repository is configured to use Nx Release for managing Docker image versioning and publishing. When running `nx release`, Docker images for the API project are automatically versioned and published based on the release configuration in `nx.json`. This integrates seamlessly with semantic versioning and changelog generation.
+## Usage examples
 
-[Learn more about Docker integration →](https://nx.dev/recipes/nx-release/release-docker-images)
+```html
+<!-- Use @if/@for, NO *ngIf/*ngFor -->
+@if (items().length) {
+  @for (item of items(); track item.id) {
+    <fuse-chip [label]="item.name"></fuse-chip>
+  }
+}
 
-### 3. 🎭 Playwright E2E Testing
+<!-- Solid button with output() event -->
+<fuse-button variant="solid" (clicked)="doThing()">Click me</fuse-button>
 
-End-to-end testing with Playwright is pre-configured:
+<!-- Two-way binding with model() -->
+<fuse-input [(value)]="myValue" label="Name"></fuse-input>
 
-```bash
-# Run e2e tests
-npx nx e2e shop-e2e
+<!-- Form field wrapping a control -->
+<fuse-form-field
+  label="Email"
+  [required]="true"
+  [hasError]="emailInvalid()"
+  errorMessage="Enter a valid email">
+  <fuse-input fuseControl [(value)]="email" type="email"></fuse-input>
+</fuse-form-field>
 
-# Run e2e tests in CI mode
-npx nx e2e-ci shop-e2e
+<!-- Range slider -->
+<fuse-slider
+  [range]="true"
+  [(value)]="priceRange"
+  [min]="0"
+  [max]="500"
+  [showTooltip]="'always'">
+</fuse-slider>
+
+<!-- Pagination -->
+<fuse-pagination
+  [total]="totalItems"
+  [pageSize]="20"
+  [(currentPage)]="page">
+</fuse-pagination>
 ```
 
-[Learn more about E2E testing →](https://nx.dev/technologies/test-tools/playwright/introduction#e2e-testing)
+## Theme switching
 
-### 4. ⚡ Vitest for Unit Testing
+```typescript
+import { inject } from '@angular/core';
+import { FuseThemeService } from '@fuse/core';
 
-Fast unit testing with Vite for Angular libraries:
+export class AppComponent {
+  private readonly fuseThemeService = inject(FuseThemeService);
 
-```bash
-# Test a specific library
-npx nx test data
-
-# Test all projects
-npx nx run-many -t test
+  // switches all components instantly
+  fuseThemeService.setTheme('ocean'); // 'light' | 'dark' | 'ocean' | 'rose' | string
+}
 ```
 
-[Learn more about Vite testing →](https://nx.dev/recipes/vite)
+Theme is applied via `data-theme` on `:root` and persisted to `localStorage`. All `--fuse-*` CSS custom properties update instantly — no page reload.
 
-### 5. 🔧 Self-Healing CI
+Available built-in themes: `light` (default), `dark`, `ocean`, `rose`.
 
-The CI pipeline includes `nx fix-ci` which automatically identifies and suggests fixes for common issues:
+## Peer dependencies
 
-```bash
-# In CI, this command provides automated fixes
-npx nx fix-ci
+```json
+{
+  "@angular/core":    ">=18.0.0",
+  "@angular/common":  ">=18.0.0",
+  "rxjs":             ">=7.4.0"
+}
 ```
 
-This feature helps maintain a healthy CI pipeline by automatically detecting and suggesting solutions for:
+`@angular/cdk >=18.0.0` is required by: `@fuse/select`, `@fuse/modal`, `@fuse/tooltip`, `@fuse/dropdown`, `@fuse/table`.
 
-- Missing dependencies
-- Incorrect task configurations
-- Cache invalidation issues
-- Common build failures
+`@angular/forms >=18.0.0` is required by: `@fuse/checkbox`.
 
-[Learn more about self-healing CI →](https://nx.dev/ci/features/self-healing-ci)
+`@ionic/angular` is **optional** — all components work in plain Angular apps.
 
-## 📁 Project Structure
+## Reduced motion
 
-```
-├── apps/
-│   ├── shop/           [scope:shop]    - Angular e-commerce app
-│   ├── shop-e2e/                       - E2E tests for shop
-│   └── api/            [scope:api]     - Backend API with Docker
-├── libs/
-│   ├── shop/
-│   │   ├── feature-products/        [scope:shop,type:feature] - Product listing
-│   │   ├── feature-product-detail/  [scope:shop,type:feature] - Product details
-│   │   ├── data/                    [scope:shop,type:data]    - Data access
-│   │   └── shared-ui/               [scope:shop,type:ui]      - UI components
-│   ├── api/
-│   │   └── products/    [scope:api]    - Product service
-│   └── shared/
-│       └── models/      [scope:shared,type:data] - Shared models
-├── nx.json             - Nx configuration
-├── tsconfig.json       - TypeScript configuration
-└── eslint.config.mjs   - ESLint with module boundary rules
+Every animated component respects `prefers-reduced-motion: reduce` via `@media` queries and the `[data-reduce-motion="true"]` attribute on `:root` for programmatic control:
+
+```typescript
+document.documentElement.setAttribute('data-reduce-motion', 'true');
 ```
 
-## 🏷️ Understanding Tags
+## License
 
-This repository uses tags to enforce module boundaries:
-
-| Project            | Tags                         | Can Import From              |
-| ------------------ | ---------------------------- | ---------------------------- |
-| `shop`             | `scope:shop`                 | `scope:shop`, `scope:shared` |
-| `api`              | `scope:api`                  | `scope:api`, `scope:shared`  |
-| `feature-products` | `scope:shop`, `type:feature` | `scope:shop`, `scope:shared` |
-| `data`             | `scope:shop`, `type:data`    | `scope:shared`               |
-| `models`           | `scope:shared`, `type:data`  | Nothing (base library)       |
-
-## 📚 Useful Commands
-
-```bash
-# Project exploration
-npx nx graph                                    # Interactive dependency graph
-npx nx list                                     # List installed plugins
-npx nx show project shop --web                 # View project details
-
-# Development
-npx nx serve shop                              # Serve Angular app
-npx nx serve api                               # Serve backend API
-npx nx build shop                              # Build Angular app
-npx nx test data                               # Test a specific library
-npx nx lint feature-products                   # Lint a specific library
-
-# Running multiple tasks
-npx nx run-many -t build                       # Build all projects
-npx nx run-many -t test --parallel=3          # Test in parallel
-npx nx run-many -t lint test build            # Run multiple targets
-
-# Affected commands (great for CI)
-npx nx affected -t build                       # Build only affected projects
-npx nx affected -t test                        # Test only affected projects
-
-# Docker operations
-npx nx docker:build api                        # Build Docker image
-npx nx docker:run api                          # Run Docker container
-```
-
-## 🎯 Adding New Features
-
-### Generate a new Angular application:
-
-```bash
-npx nx g @nx/angular:app my-app
-```
-
-### Generate a new Angular library:
-
-```bash
-npx nx g @nx/angular:lib my-lib
-```
-
-### Generate a new Angular component:
-
-```bash
-npx nx g @nx/angular:component my-component --project=my-lib
-```
-
-### Generate a new API library:
-
-```bash
-npx nx g @nx/node:lib my-api-lib
-```
-
-You can use `npx nx list` to see all available plugins and `npx nx list <plugin-name>` to see all generators for a specific plugin.
-
-## Nx Cloud
-
-Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
-
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## 🔗 Learn More
-
-- [Nx Documentation](https://nx.dev)
-- [Angular Monorepo Tutorial](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial)
-- [Module Boundaries](https://nx.dev/features/enforce-module-boundaries)
-- [Docker Integration](https://nx.dev/recipes/nx-release/release-docker-images)
-- [Playwright Testing](https://nx.dev/technologies/test-tools/playwright/introduction#e2e-testing)
-- [Vite with Angular](https://nx.dev/recipes/vite)
-- [Nx Cloud](https://nx.dev/ci/intro/why-nx-cloud)
-- [Releasing Packages](https://nx.dev/features/manage-releases)
-
-## 💬 Community
-
-Join the Nx community:
-
-- [Discord](https://go.nx.dev/community)
-- [X (Twitter)](https://twitter.com/nxdevtools)
-- [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [YouTube](https://www.youtube.com/@nxdevtools)
-- [Blog](https://nx.dev/blog)
+MIT

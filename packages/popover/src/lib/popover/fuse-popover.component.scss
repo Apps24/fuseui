@@ -1,0 +1,76 @@
+:host {
+  display: inline-block;
+  position: relative;
+}
+
+.fuse-popover__trigger {
+  display: contents;
+}
+
+.fuse-popover__panel {
+  position: absolute;
+  z-index: var(--fuse-z-popover, 1000);
+  background: var(--fuse-color-bg-elevated);
+  border: 0.5px solid var(--fuse-color-border-default);
+  border-radius: var(--fuse-radius-lg);
+  box-shadow: var(--fuse-shadow-lg);
+  padding: var(--fuse-spacing-3);
+  min-width: 200px;
+
+  // ─── Placement ─────────────────────────────────────────────────────────────
+
+  &[data-placement='bottom'] {
+    top: calc(100% + var(--fuse-spacing-2, 8px));
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: top center;
+  }
+
+  &[data-placement='top'] {
+    bottom: calc(100% + var(--fuse-spacing-2, 8px));
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: bottom center;
+  }
+
+  &[data-placement='left'] {
+    right: calc(100% + var(--fuse-spacing-2, 8px));
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: right center;
+  }
+
+  &[data-placement='right'] {
+    left: calc(100% + var(--fuse-spacing-2, 8px));
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: left center;
+  }
+
+  // ─── Enter / leave animations ───────────────────────────────────────────────
+
+  &[data-overlay-entering] {
+    animation: fuse-overlay-in var(--fuse-duration-enter, 250ms)
+      var(--fuse-easing-spring-enter, cubic-bezier(0.34, 1.56, 0.64, 1)) both;
+  }
+
+  &[data-overlay-leaving] {
+    animation: fuse-overlay-out var(--fuse-duration-fast, 150ms)
+      var(--fuse-easing-smooth, ease-out) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &[data-overlay-entering],
+    &[data-overlay-leaving] { animation: none; }
+  }
+}
+
+// ─── Ionic platform adjustments ─────────────────────────────────────────────────
+
+:host-context(.ios) .fuse-popover__panel {
+  border-radius: var(--fuse-radius-xl, 14px);
+}
+
+:host-context(.md) .fuse-popover__panel {
+  border-radius: var(--fuse-radius-md, 4px);
+}

@@ -1,0 +1,126 @@
+<div
+  class="fuse-select"
+  [class.fuse-select--sm]="size() === 'sm'"
+  [class.fuse-select--lg]="size() === 'lg'"
+  [class.fuse-select--open]="isOpen()"
+  [class.fuse-select--error]="hasError()"
+  [class.fuse-select--disabled]="isDisabled()">
+
+  @if (label()) {
+    <label class="fuse-select__label">{{ label() }}</label>
+  }
+
+  <!-- ─── Trigger ─────────────────────────────────────────────────────────── -->
+  <button
+    #triggerRef
+    type="button"
+    class="fuse-select__trigger"
+    cdkOverlayOrigin
+    #overlayOrigin="cdkOverlayOrigin"
+    [disabled]="isDisabled()"
+    (click)="toggleOpen()"
+    role="combobox"
+    [attr.aria-expanded]="isOpen()"
+    aria-haspopup="listbox">
+
+    <span
+      class="fuse-select__value"
+      [class.fuse-select__value--placeholder]="!hasValue()">
+      {{ hasValue() ? displayLabel() : placeholder() }}
+    </span>
+
+    <svg
+      class="fuse-select__arrow"
+      [class.fuse-select__arrow--open]="isOpen()"
+      xmlns="http://www.w3.org/2000/svg"
+      width="16" height="16"
+      viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round"
+      aria-hidden="true">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </button>
+
+  <!-- ─── CDK Dropdown Panel ──────────────────────────────────────────────── -->
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="overlayOrigin"
+    [cdkConnectedOverlayOpen]="isOpen()"
+    [cdkConnectedOverlayHasBackdrop]="true"
+    cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+    [cdkConnectedOverlayWidth]="panelWidth"
+    [cdkConnectedOverlayPositions]="positions"
+    (attach)="onPanelAttach()">
+
+    <div class="fuse-select__panel" role="listbox" [attr.aria-multiselectable]="multiple()">
+
+      <!-- Search ──────────────────────────────────────────────────────────── -->
+      @if (searchable()) {
+        <div class="fuse-select__search">
+          <input
+            class="fuse-select__search-input"
+            type="text"
+            placeholder="Search…"
+            [value]="filterText()"
+            (input)="filterText.set($any($event.target).value)"
+            (click)="$event.stopPropagation()"
+            autocomplete="off" />
+        </div>
+      }
+
+      <!-- Empty state ─────────────────────────────────────────────────────── -->
+      @if (filteredOptions().length === 0) {
+        <div class="fuse-select__empty">
+          No options found
+        </div>
+      }
+
+      <!-- Options ─────────────────────────────────────────────────────────── -->
+      @for (opt of filteredOptions(); track opt.value; let i = $index) {
+        <button
+          type="button"
+          class="fuse-select__option"
+          [class.fuse-select__option--selected]="isSelected(opt)"
+          [class.fuse-select__option--highlighted]="highlightedIndex() === i"
+          [class.fuse-select__option--disabled]="opt.disabled"
+          [disabled]="opt.disabled"
+          role="option"
+          [attr.aria-selected]="isSelected(opt)"
+          (click)="selectOption(opt)"
+          (mouseenter)="highlightedIndex.set(i)">
+
+          <!-- Multiple: checkbox indicator -->
+          @if (multiple()) {
+            <span class="fuse-select__checkbox" aria-hidden="true">
+              @if (isSelected(opt)) {
+                <svg
+                  xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                  viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              }
+            </span>
+          }
+
+          <span class="fuse-select__option-label">{{ opt.label }}</span>
+
+          <!-- Single: check indicator -->
+          @if (!multiple() && isSelected(opt)) {
+            <svg
+              class="fuse-select__check"
+              xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          }
+        </button>
+      }
+    </div>
+  </ng-template>
+</div>

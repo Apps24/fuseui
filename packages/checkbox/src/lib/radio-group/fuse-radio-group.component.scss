@@ -1,0 +1,33 @@
+// ─── Component tokens ────────────────────────────────────────────────────────
+:host {
+  --fuse-radio-group-gap: var(--fuse-space-3, 0.75rem);
+  --fuse-radio-group-gap-horizontal: var(--fuse-space-4, 1rem);
+
+  display: block;
+}
+
+// ─── Layout ───────────────────────────────────────────────────────────────────
+.fuse-radio-group {
+  display: flex;
+
+  &--vertical {
+    flex-direction: column;
+    gap: var(--fuse-radio-group-gap);
+  }
+
+  &--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--fuse-radio-group-gap-horizontal);
+  }
+}
+
+// ─── iOS overrides ────────────────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-radio-group-gap: var(--fuse-space-4, 1rem);
+}
+
+// ─── Material Design overrides ────────────────────────────────────────────────
+:host-context(.md) {
+  --fuse-radio-group-gap: var(--fuse-space-2, 0.5rem);
+}

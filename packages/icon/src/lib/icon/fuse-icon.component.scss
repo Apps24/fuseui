@@ -1,0 +1,26 @@
+// ─── Host token overrides ────────────────────────────────────────────────────
+:host {
+  --fuse-icon-color: currentColor;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+// ─── Inner span (sized + coloured via template bindings) ─────────────────────
+:host span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ─── Ionic platform overrides ─────────────────────────────────────────────────
+// SVGs use stroke="currentColor" — colour inherits automatically from the
+// [style.color] binding, so no platform-specific overrides are needed here.
+:host-context(.ios) {
+}
+
+:host-context(.md) {
+}

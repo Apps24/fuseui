@@ -1,0 +1,35 @@
+:root {
+  /* Fluid type scale — automatically scales between viewport widths */
+  --fuse-font-family: 'Inter Variable', 'Inter', system-ui, -apple-system,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --fuse-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code',
+    ui-monospace, monospace;
+
+  /* Fluid sizes from token generation */
+  --fuse-fluid-xs:  clamp(0.694rem, 0.65rem + 0.2vw,  0.75rem);
+  --fuse-fluid-sm:  clamp(0.833rem, 0.79rem + 0.2vw,  0.875rem);
+  --fuse-fluid-md:  clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --fuse-fluid-lg:  clamp(1.2rem,   1.1rem  + 0.5vw,  1.5rem);
+  --fuse-fluid-xl:  clamp(1.44rem,  1.3rem  + 0.7vw,  2rem);
+  --fuse-fluid-2xl: clamp(1.728rem, 1.5rem  + 1.1vw,  2.5rem);
+  --fuse-fluid-3xl: clamp(2.074rem, 1.8rem  + 1.4vw,  3rem);
+
+  /* Letter spacing */
+  --fuse-tracking-tight:  -0.025em;
+  --fuse-tracking-normal:  0em;
+  --fuse-tracking-wide:    0.025em;
+
+  /* Base body font size tied to fluid scale */
+  font-size: var(--fuse-fluid-md);
+  font-family: var(--fuse-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Variable font axis support (Inter Variable) */
+@supports (font-variation-settings: normal) {
+  :root {
+    font-optical-sizing: auto;
+    font-variation-settings: 'wght' 400;
+  }
+}

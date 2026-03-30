@@ -1,0 +1,10 @@
+[13:53:01.851] [INFO] storybook v10.3.3
+[13:53:02.940] [DEBUG] Getting package.json info for D:/Libraries/fuseui/package.json...
+[13:53:03.515] [INFO] Starting...
+[13:53:03.845] [DEBUG] Starting preview..
+[13:53:03.856] [ERROR] Failed to build the preview
+[13:53:03.858] [ERROR] [38;2;241;97;97mReferenceError: __dirname is not defined[39m
+    at Object.viteFinal (file:///D:/Libraries/fuseui/packages/core/.storybook/main.ts:43:59)
+    at file:///D:/Libraries/fuseui/node_modules/.pnpm/storybook@10.3.3_@testing-l_3edb207ed21ba9f3d2dd5dae50a78bcb/node_modules/storybook/dist/_node-chunks/chunk-NQBOIYE4.js:10114:36
+[13:53:03.859] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

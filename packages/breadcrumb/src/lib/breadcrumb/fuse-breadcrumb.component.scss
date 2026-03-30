@@ -1,0 +1,84 @@
+:host {
+  display: block;
+}
+
+.fuse-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  font-size: var(--fuse-fluid-sm, 0.875rem);
+  color: var(--fuse-color-text-secondary);
+}
+
+.fuse-breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+
+// ─── Link ────────────────────────────────────────────────────────────────────
+
+.fuse-breadcrumb__link {
+  color: var(--fuse-color-text-secondary);
+  text-decoration: none;
+  transition: color var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth, ease-out);
+
+  &:hover {
+    color: var(--fuse-color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+
+// ─── Current page (last item) ────────────────────────────────────────────────
+
+.fuse-breadcrumb__item--last .fuse-breadcrumb__label {
+  color: var(--fuse-color-text-primary);
+  font-weight: 500;
+}
+
+// ─── Separator ───────────────────────────────────────────────────────────────
+
+.fuse-breadcrumb__sep {
+  color: var(--fuse-color-text-secondary);
+  opacity: 0.4;
+  user-select: none;
+  margin: 0 var(--fuse-spacing-2, 8px);
+}
+
+// ─── Ellipsis button ─────────────────────────────────────────────────────────
+
+.fuse-breadcrumb__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 24px;
+  padding: 0 var(--fuse-spacing-1, 4px);
+  background: transparent;
+  border: 1px solid var(--fuse-color-border-default);
+  border-radius: var(--fuse-radius-sm, 4px);
+  color: var(--fuse-color-text-secondary);
+  font-size: inherit;
+  cursor: pointer;
+  transition: background var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth, ease-out),
+              color var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth, ease-out);
+  margin: 0 var(--fuse-spacing-2, 8px);
+
+  &:hover {
+    background: var(--fuse-color-bg-sunken);
+    color: var(--fuse-color-text-primary);
+  }
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+
+// ─── Platform ────────────────────────────────────────────────────────────────
+
+:host-context(.ios) .fuse-breadcrumb { font-size: var(--fuse-fluid-sm, 0.875rem); }
+:host-context(.md)  .fuse-breadcrumb { font-size: var(--fuse-fluid-sm, 0.875rem); }

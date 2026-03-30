@@ -1,0 +1,26 @@
+<button
+  class="fuse-accordion__trigger"
+  type="button"
+  [id]="'trigger-' + itemId()"
+  [attr.aria-controls]="'body-' + itemId()"
+  [disabled]="disabled() || null"
+  (click)="accordion.toggle(itemId())">
+  <span class="fuse-accordion__title">{{ title() }}</span>
+  <fuse-icon
+    name="chevron-down"
+    size="sm"
+    class="fuse-accordion__chevron"
+    [class.fuse-accordion__chevron--open]="isOpen()">
+  </fuse-icon>
+</button>
+
+<div
+  #contentEl
+  class="fuse-accordion__body"
+  role="region"
+  [id]="'body-' + itemId()"
+  [attr.aria-labelledby]="'trigger-' + itemId()">
+  <div class="fuse-accordion__body-inner">
+    <ng-content></ng-content>
+  </div>
+</div>

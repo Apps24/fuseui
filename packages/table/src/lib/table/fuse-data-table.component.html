@@ -1,0 +1,76 @@
+<div class="fuse-table-container">
+  <table cdk-table
+         [dataSource]="tableData()"
+         [class.fuse-table--sticky]="stickyHeader()"
+         class="fuse-table">
+
+    <!-- ── Column definitions ──────────────────────────────────────────────── -->
+    @for (col of columns(); track col.key) {
+      <ng-container [cdkColumnDef]="col.key">
+
+        <!-- Header cell -->
+        <th cdk-header-cell
+            *cdkHeaderCellDef
+            class="fuse-table__th"
+            [class.fuse-table__th--sortable]="sortable() && col.sortable"
+            [style.width]="col.width ?? null"
+            [style.text-align]="col.align ?? 'left'"
+            (click)="onSort(col.key)">
+          {{ col.label }}
+          @if (sortable() && col.sortable) {
+            <fuse-icon [name]="sortIconFor(col.key)" size="sm" class="fuse-table__sort-icon"></fuse-icon>
+          }
+        </th>
+
+        <!-- Data / skeleton cell -->
+        <td cdk-cell
+            *cdkCellDef="let row"
+            class="fuse-table__td"
+            [style.text-align]="col.align ?? 'left'"
+            [attr.data-column]="col.key">
+          @if (!isSkeletonRow(0, row)) {
+            @if (col.cellTemplate) {
+              <ng-container
+                [ngTemplateOutlet]="col.cellTemplate"
+                [ngTemplateOutletContext]="{ $implicit: getCellValue(row, col.key), row: row }">
+              </ng-container>
+            } @else {
+              {{ getCellValue(row, col.key) }}
+            }
+          } @else {
+            <fuse-skeleton variant="text" width="80%"></fuse-skeleton>
+          }
+        </td>
+
+      </ng-container>
+    }
+
+    <!-- ── Header row ──────────────────────────────────────────────────────── -->
+    <tr cdk-header-row
+        *cdkHeaderRowDef="displayedColumns(); sticky: stickyHeader()"
+        class="fuse-table__header-row">
+    </tr>
+
+    <!-- ── Data rows (visible when loading=false) ──────────────────────────── -->
+    <tr cdk-row
+        *cdkRowDef="let row; columns: displayedColumns(); when: isDataRow"
+        class="fuse-table__row"
+        [attr.data-entering]="''">
+    </tr>
+
+    <!-- ── Skeleton rows (visible when loading=true) ───────────────────────── -->
+    <tr cdk-row
+        *cdkRowDef="let row; columns: displayedColumns(); when: isSkeletonRow"
+        class="fuse-table__row fuse-table__row--skeleton">
+    </tr>
+
+  </table>
+
+  <!-- ── Empty state ─────────────────────────────────────────────────────── -->
+  @if (!loading() && data().length === 0) {
+    <div class="fuse-table__empty">
+      <ng-content select="[fuseEmptyState]"></ng-content>
+    </div>
+  }
+
+</div>

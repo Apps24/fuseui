@@ -1,0 +1,87 @@
+/* ─── Light theme (default) ─────────────────────────────────────── */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+  --fuse-color-primary:        #3880ff;
+  --fuse-color-primary-hover:  #2563eb;
+  --fuse-color-on-primary:     #ffffff;
+  --fuse-color-secondary:      #dbeafe;
+  --fuse-color-on-secondary:   #1e3a8a;
+  --fuse-color-success:        #22c55e;
+  --fuse-color-warning:        #f59e0b;
+  --fuse-color-danger:         #ef4444;
+  --fuse-color-bg-surface:     #ffffff;
+  --fuse-color-bg-elevated:    #fafafa;
+  --fuse-color-bg-sunken:      #f5f5f5;
+  --fuse-color-bg-overlay:     rgba(0,0,0,0.45);
+  --fuse-color-text-primary:   #171717;
+  --fuse-color-text-secondary: #525252;
+  --fuse-color-text-disabled:  #a3a3a3;
+  --fuse-color-border-default: #e5e5e5;
+  --fuse-color-border-focus:   #3880ff;
+  --fuse-color-border-error:   #ef4444;
+  --fuse-shadow-sm:  0 1px 2px var(--fuse-shadow-color, rgba(0,0,0,0.06));
+  --fuse-shadow-md:  0 4px 12px var(--fuse-shadow-color, rgba(0,0,0,0.08));
+  --fuse-shadow-lg:  0 8px 24px var(--fuse-shadow-color, rgba(0,0,0,0.10));
+}
+
+/* ─── Dark theme ─────────────────────────────────────────────────── */
+:root[data-theme="dark"],
+:root.ion-palette-dark {
+  color-scheme: dark;
+  --fuse-color-primary:        #428cff;
+  --fuse-color-primary-hover:  #5e9fff;
+  --fuse-color-on-primary:     #ffffff;
+  --fuse-color-secondary:      #1e3a6e;
+  --fuse-color-on-secondary:   #bfdbfe;
+  --fuse-color-success:        #4ade80;
+  --fuse-color-warning:        #fbbf24;
+  --fuse-color-danger:         #f87171;
+  --fuse-color-bg-surface:     #111112;
+  --fuse-color-bg-elevated:    #1a1a1c;
+  --fuse-color-bg-sunken:      #0c0c0d;
+  --fuse-color-bg-overlay:     rgba(0,0,0,0.65);
+  --fuse-color-text-primary:   #f0f0f0;
+  --fuse-color-text-secondary: #8a8a9a;
+  --fuse-color-text-disabled:  #4a4a5a;
+  --fuse-color-border-default: rgba(255,255,255,0.10);
+  --fuse-color-border-focus:   #428cff;
+  --fuse-color-border-error:   #f87171;
+  --fuse-shadow-color:         rgba(0,0,0,0.40);
+}
+
+/* ─── Ocean theme ────────────────────────────────────────────────── */
+:root[data-theme="ocean"] {
+  color-scheme: light;
+  --fuse-color-primary:        #0ea5e9;
+  --fuse-color-primary-hover:  #0284c7;
+  --fuse-color-on-primary:     #ffffff;
+  --fuse-color-secondary:      #e0f2fe;
+  --fuse-color-on-secondary:   #0c4a6e;
+  --fuse-color-bg-surface:     #f0f9ff;
+  --fuse-color-bg-elevated:    #e0f2fe;
+  --fuse-color-bg-sunken:      #bae6fd;
+  --fuse-color-text-primary:   #0c4a6e;
+  --fuse-color-text-secondary: #075985;
+  --fuse-color-border-default: #7dd3fc;
+  --fuse-color-border-focus:   #0ea5e9;
+  --fuse-shadow-color:         rgba(14,165,233,0.12);
+}
+
+/* ─── Rose theme ─────────────────────────────────────────────────── */
+:root[data-theme="rose"] {
+  color-scheme: light;
+  --fuse-color-primary:        #f43f5e;
+  --fuse-color-primary-hover:  #e11d48;
+  --fuse-color-on-primary:     #ffffff;
+  --fuse-color-secondary:      #ffe4e6;
+  --fuse-color-on-secondary:   #4c0519;
+  --fuse-color-bg-surface:     #fff1f2;
+  --fuse-color-bg-elevated:    #ffe4e6;
+  --fuse-color-bg-sunken:      #fecdd3;
+  --fuse-color-text-primary:   #4c0519;
+  --fuse-color-text-secondary: #9f1239;
+  --fuse-color-border-default: #fda4af;
+  --fuse-color-border-focus:   #f43f5e;
+  --fuse-shadow-color:         rgba(244,63,94,0.12);
+}

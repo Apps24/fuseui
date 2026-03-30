@@ -1,0 +1,22 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noImplicitOverride": true,
+    "emitDecoratorMetadata": false,
+    "isolatedModules": true,
+    "types": ["node"]
+  },
+  "include": [
+    "../packages/*/src/**/*.ts",
+    "../packages/*/src/**/*.stories.ts",
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "../packages/*/src/**/*.spec.ts",
+    "../node_modules"
+  ]
+}

@@ -1,0 +1,18 @@
+<div class="fuse-dropdown__trigger"
+     role="button"
+     [attr.aria-haspopup]="'menu'"
+     [attr.aria-expanded]="isOpen()"
+     tabindex="0"
+     (click)="onTriggerClick()"
+     (keydown)="onTriggerKeydown($event)">
+  <ng-content select="[fuseDropdownTrigger]"></ng-content>
+</div>
+
+@if (isOpen()) {
+  <div #panel
+       class="fuse-dropdown-panel"
+       role="menu"
+       (keydown.escape)="onEscape()">
+    <ng-content select="fuse-dropdown-item"></ng-content>
+  </div>
+}

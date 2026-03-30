@@ -1,0 +1,34 @@
+.fuse-tooltip {
+  background: var(--fuse-color-bg-elevated);
+  color: var(--fuse-color-text-primary);
+  border: 0.5px solid var(--fuse-color-border-default);
+  border-radius: var(--fuse-radius-md, 8px);
+  font-size: var(--fuse-fluid-sm, 0.875rem);
+  font-family: var(--fuse-font-family, system-ui, sans-serif);
+  padding: var(--fuse-spacing-1, 4px) var(--fuse-spacing-3, 12px);
+  box-shadow: var(--fuse-shadow-md);
+  max-width: 240px;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+// ── Ionic platform adaptations ───────────────────────────────────────────────
+
+:host-context(.ios) {
+  .fuse-tooltip {
+    border-radius: var(--fuse-radius-lg, 12px);
+    font-size: var(--fuse-fluid-xs, 0.8125rem);
+    padding: var(--fuse-spacing-2, 8px) var(--fuse-spacing-3, 12px);
+  }
+}
+
+:host-context(.md) {
+  .fuse-tooltip {
+    border-radius: var(--fuse-radius-sm, 4px);
+    font-size: var(--fuse-fluid-sm, 0.875rem);
+  }
+}

@@ -1,0 +1,132 @@
+// ─── Component tokens ────────────────────────────────────────────────────────
+:host {
+  // Color map — each color has bg, text, border variants
+  --fuse-badge-primary-bg:       var(--fuse-color-primary, #6366f1);
+  --fuse-badge-primary-text:     var(--fuse-color-on-primary, #ffffff);
+  --fuse-badge-primary-flat-bg:  var(--fuse-color-primary-subtle, #eef2ff);
+  --fuse-badge-primary-flat-text: var(--fuse-color-primary, #6366f1);
+
+  --fuse-badge-secondary-bg:       var(--fuse-color-secondary, #64748b);
+  --fuse-badge-secondary-text:     var(--fuse-color-on-primary, #ffffff);
+  --fuse-badge-secondary-flat-bg:  var(--fuse-color-secondary-subtle, #f1f5f9);
+  --fuse-badge-secondary-flat-text: var(--fuse-color-secondary, #64748b);
+
+  --fuse-badge-success-bg:       var(--fuse-color-success, #22c55e);
+  --fuse-badge-success-text:     var(--fuse-color-on-primary, #ffffff);
+  --fuse-badge-success-flat-bg:  var(--fuse-color-success-subtle, #f0fdf4);
+  --fuse-badge-success-flat-text: var(--fuse-color-success, #16a34a);
+
+  --fuse-badge-warning-bg:       var(--fuse-color-warning, #f59e0b);
+  --fuse-badge-warning-text:     var(--fuse-color-on-primary, #ffffff);
+  --fuse-badge-warning-flat-bg:  var(--fuse-color-warning-subtle, #fffbeb);
+  --fuse-badge-warning-flat-text: var(--fuse-color-warning-dark, #d97706);
+
+  --fuse-badge-danger-bg:       var(--fuse-color-danger, #ef4444);
+  --fuse-badge-danger-text:     var(--fuse-color-on-primary, #ffffff);
+  --fuse-badge-danger-flat-bg:  var(--fuse-color-danger-subtle, #fef2f2);
+  --fuse-badge-danger-flat-text: var(--fuse-color-danger, #dc2626);
+
+  --fuse-badge-radius-pill: var(--fuse-radius-full, 9999px);
+  --fuse-badge-font-size-sm: var(--fuse-font-size-xs, 0.7rem);
+  --fuse-badge-font-size-md: var(--fuse-font-size-sm, 0.8rem);
+  --fuse-badge-padding-sm:   0.15em 0.5em;
+  --fuse-badge-padding-md:   0.25em 0.65em;
+  --fuse-badge-dot-size-sm:  8px;
+  --fuse-badge-dot-size-md:  10px;
+  --fuse-badge-offset:       4px;
+  --fuse-badge-border-width: 1.5px;
+
+  display: inline-flex;
+  position: relative;
+  vertical-align: middle;
+  align-self: flex-start;
+}
+
+// ─── Base indicator ────────────────────────────────────────────────────────────
+.fuse-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--fuse-badge-radius-pill);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+
+  // When host wraps content the indicator floats at top-right
+  :host:has(> *:not(.fuse-badge)) & {
+    position: absolute;
+    top: calc(-1 * var(--fuse-badge-offset));
+    right: calc(-1 * var(--fuse-badge-offset));
+    transform: translate(50%, -50%);
+  }
+
+  // ─── Sizes ────────────────────────────────────────────────────────────────
+  &--sm {
+    font-size: var(--fuse-badge-font-size-sm);
+    padding: var(--fuse-badge-padding-sm);
+    min-width: 1.4em;
+    height: 1.4em;
+  }
+
+  &--md {
+    font-size: var(--fuse-badge-font-size-md);
+    padding: var(--fuse-badge-padding-md);
+    min-width: 1.6em;
+    height: 1.6em;
+  }
+
+  // ─── Dot mode ────────────────────────────────────────────────────────────
+  &--dot {
+    padding: 0;
+    border-radius: 50%;
+
+    &.fuse-badge--sm {
+      width: var(--fuse-badge-dot-size-sm);
+      height: var(--fuse-badge-dot-size-sm);
+      min-width: unset;
+    }
+
+    &.fuse-badge--md {
+      width: var(--fuse-badge-dot-size-md);
+      height: var(--fuse-badge-dot-size-md);
+      min-width: unset;
+    }
+  }
+
+  // ─── Color × variant matrix ──────────────────────────────────────────────
+
+  @each $color in primary, secondary, success, warning, danger {
+    &--#{$color} {
+      &.fuse-badge--solid {
+        background-color: var(--fuse-badge-#{$color}-bg);
+        color: var(--fuse-badge-#{$color}-text);
+      }
+
+      &.fuse-badge--flat {
+        background-color: var(--fuse-badge-#{$color}-flat-bg);
+        color: var(--fuse-badge-#{$color}-flat-text);
+      }
+
+      &.fuse-badge--outline {
+        background-color: transparent;
+        color: var(--fuse-badge-#{$color}-bg);
+        border: var(--fuse-badge-border-width) solid var(--fuse-badge-#{$color}-bg);
+      }
+    }
+  }
+}
+
+.fuse-badge__text {
+  display: inline-block;
+}
+
+// ─── iOS overrides ────────────────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-badge-radius-pill: var(--fuse-radius-full, 9999px);
+  --fuse-badge-font-size-sm: 0.65rem;
+}
+
+// ─── Material Design overrides ────────────────────────────────────────────────
+:host-context(.md) {
+  --fuse-badge-font-size-sm: 0.72rem;
+}

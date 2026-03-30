@@ -1,0 +1,28 @@
+<label
+  class="fuse-radio"
+  [class.fuse-radio--checked]="isChecked()"
+  [class.fuse-radio--disabled]="isDisabled()"
+  [class.fuse-radio--sm]="size() === 'sm'"
+  [class.fuse-radio--md]="size() === 'md'"
+  [class.fuse-radio--lg]="size() === 'lg'"
+>
+  <input
+    class="fuse-radio__native"
+    type="radio"
+    [name]="radioName"
+    [checked]="isChecked()"
+    [disabled]="isDisabled()"
+    (change)="handleChange()"
+    (blur)="handleBlur()"
+  />
+
+  <span class="fuse-radio__circle" aria-hidden="true">
+    @if (isChecked()) {
+      <span class="fuse-radio__dot"></span>
+    }
+  </span>
+
+  @if (label()) {
+    <span class="fuse-radio__label">{{ label() }}</span>
+  }
+</label>

@@ -1,0 +1,60 @@
+<label
+  class="fuse-checkbox"
+  [class.fuse-checkbox--checked]="checked()"
+  [class.fuse-checkbox--indeterminate]="indeterminate()"
+  [class.fuse-checkbox--disabled]="isDisabled()"
+  [class.fuse-checkbox--sm]="size() === 'sm'"
+  [class.fuse-checkbox--md]="size() === 'md'"
+  [class.fuse-checkbox--lg]="size() === 'lg'"
+>
+  <input
+    class="fuse-checkbox__native"
+    type="checkbox"
+    [checked]="checked()"
+    [indeterminate]="indeterminate()"
+    [disabled]="isDisabled()"
+    (change)="handleChange($event)"
+    (blur)="handleBlur()"
+  />
+
+  <span class="fuse-checkbox__box" aria-hidden="true">
+    <!-- Checkmark icon -->
+    @if (checked() && !indeterminate()) {
+      <svg
+        class="fuse-checkbox__icon"
+        viewBox="0 0 12 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 5L4.5 8.5L11 1.5"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    }
+
+    <!-- Indeterminate dash icon -->
+    @if (indeterminate()) {
+      <svg
+        class="fuse-checkbox__icon"
+        viewBox="0 0 12 2"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 1H11"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+      </svg>
+    }
+  </span>
+
+  @if (label()) {
+    <span class="fuse-checkbox__label">{{ label() }}</span>
+  }
+</label>

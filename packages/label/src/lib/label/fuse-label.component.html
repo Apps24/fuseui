@@ -1,0 +1,9 @@
+<label
+  [attr.for]="for() || null"
+  [class.fuse-label--required]="required()"
+  [class.fuse-label--disabled]="disabled()">
+  <ng-content></ng-content>
+  @if (required()) {
+    <span class="fuse-label__asterisk" aria-hidden="true">*</span>
+  }
+</label>

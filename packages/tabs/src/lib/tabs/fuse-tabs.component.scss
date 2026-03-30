@@ -1,0 +1,156 @@
+// ─── Host ─────────────────────────────────────────────────────────────────────
+
+:host {
+  display: block;
+  font-family: var(--fuse-font-family, system-ui, sans-serif);
+}
+
+:host-context(.ios) {
+  --fuse-tabs-radius: var(--fuse-radius-lg, 12px);
+}
+
+:host-context(.md) {
+  --fuse-tabs-radius: var(--fuse-radius-md, 8px);
+}
+
+// ─── Tab list ─────────────────────────────────────────────────────────────────
+
+.fuse-tabs__list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+// ── Line variant ──────────────────────────────────────────────────────────────
+
+.fuse-tabs__list--line {
+  border-bottom: 1px solid var(--fuse-color-border-default);
+  gap: 0;
+}
+
+// ── Pills variant ─────────────────────────────────────────────────────────────
+
+.fuse-tabs__list--pills {
+  gap: var(--fuse-spacing-1, 4px);
+  padding: var(--fuse-spacing-1, 4px);
+}
+
+// ── Boxed / segmented variant ─────────────────────────────────────────────────
+
+.fuse-tabs__list--boxed {
+  gap: 0;
+  background: var(--fuse-color-bg-sunken);
+  border: 1px solid var(--fuse-color-border-default);
+  border-radius: var(--fuse-tabs-radius, var(--fuse-radius-md, 8px));
+  padding: var(--fuse-spacing-1, 4px);
+}
+
+// ─── Tab buttons ──────────────────────────────────────────────────────────────
+
+.fuse-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fuse-spacing-1, 6px);
+  border: none;
+  background: transparent;
+  color: var(--fuse-color-text-secondary);
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition:
+    color var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth, ease),
+    background var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth, ease);
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+
+  &:focus-visible {
+    outline: 2px solid var(--fuse-color-border-focus);
+    outline-offset: 2px;
+    border-radius: var(--fuse-radius-sm, 4px);
+  }
+
+  &:hover:not(.fuse-tab-btn--disabled):not(.fuse-tab-btn--active) {
+    color: var(--fuse-color-text-primary);
+  }
+
+  // ── Active ────────────────────────────────────────────────────────────────
+
+  &.fuse-tab-btn--active {
+    color: var(--fuse-color-primary);
+  }
+
+  // ── Disabled ──────────────────────────────────────────────────────────────
+
+  &.fuse-tab-btn--disabled,
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ── Size modifiers ────────────────────────────────────────────────────────────
+
+.fuse-tabs__list--sm .fuse-tab-btn {
+  padding: var(--fuse-spacing-2, 6px) var(--fuse-spacing-3, 10px);
+  font-size: var(--fuse-fluid-sm, 0.875rem);
+}
+
+.fuse-tabs__list--md .fuse-tab-btn {
+  padding: var(--fuse-spacing-3, 8px) var(--fuse-spacing-4, 14px);
+  font-size: var(--fuse-fluid-md, 1rem);
+}
+
+// ── Pills active ──────────────────────────────────────────────────────────────
+
+.fuse-tabs__list--pills .fuse-tab-btn {
+  border-radius: var(--fuse-radius-full, 9999px);
+
+  &.fuse-tab-btn--active {
+    background: var(--fuse-color-primary);
+    color: var(--fuse-color-on-primary);
+  }
+}
+
+// ── Boxed active ──────────────────────────────────────────────────────────────
+
+.fuse-tabs__list--boxed .fuse-tab-btn {
+  border-radius: calc(var(--fuse-tabs-radius, var(--fuse-radius-md, 8px)) - 2px);
+  flex: 1;
+  justify-content: center;
+
+  &.fuse-tab-btn--active {
+    background: var(--fuse-color-bg-surface);
+    color: var(--fuse-color-text-primary);
+    box-shadow: var(--fuse-shadow-sm);
+  }
+}
+
+// ─── Animated indicator (line variant only) ───────────────────────────────────
+
+.fuse-tabs__indicator {
+  position: absolute;
+  bottom: -1px;
+  height: 2px;
+  background: var(--fuse-color-primary);
+  border-radius: var(--fuse-radius-full, 9999px);
+  transition:
+    left  var(--fuse-duration-slow, 300ms) var(--fuse-easing-spring-enter, cubic-bezier(0.34, 1.56, 0.64, 1)),
+    width var(--fuse-duration-slow, 300ms) var(--fuse-easing-spring-enter, cubic-bezier(0.34, 1.56, 0.64, 1));
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+
+// ─── Panels ───────────────────────────────────────────────────────────────────
+
+.fuse-tabs__panels {
+  padding-top: var(--fuse-spacing-4, 16px);
+}
+
+// fuse-tab host: block display so panels stack correctly
+fuse-tab {
+  display: block;
+}

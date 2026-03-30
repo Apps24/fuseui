@@ -1,0 +1,129 @@
+// ─── Host token overrides ────────────────────────────────────────────────────
+:host {
+  --fuse-btn-bg:          var(--fuse-color-primary);
+  --fuse-btn-color:       var(--fuse-color-on-primary);
+  --fuse-btn-radius:      var(--fuse-radius-md);
+  --fuse-btn-px:          var(--fuse-spacing-4);
+  --fuse-btn-py:          var(--fuse-spacing-2);
+  --fuse-btn-font-size:   var(--fuse-font-size-md);
+  --fuse-btn-font-weight: var(--fuse-font-weight-medium);
+  --fuse-btn-border:      transparent;
+  --fuse-btn-shadow:      none;
+
+  display: inline-flex;
+}
+
+// ─── Color variants ───────────────────────────────────────────────────────────
+:host(.fuse-btn--primary) {
+  --fuse-btn-bg:    var(--fuse-color-primary);
+  --fuse-btn-color: var(--fuse-color-on-primary);
+}
+
+:host(.fuse-btn--secondary) {
+  --fuse-btn-bg:    var(--fuse-color-secondary);
+  --fuse-btn-color: var(--fuse-color-on-secondary);
+}
+
+:host(.fuse-btn--success) {
+  --fuse-btn-bg:    var(--fuse-color-success);
+  --fuse-btn-color: var(--fuse-color-on-success);
+}
+
+:host(.fuse-btn--danger) {
+  --fuse-btn-bg:    var(--fuse-color-danger);
+  --fuse-btn-color: var(--fuse-color-on-danger);
+}
+
+// ─── Style variants ───────────────────────────────────────────────────────────
+:host(.fuse-btn--outline) button {
+  background: transparent;
+  border: 1.5px solid var(--fuse-btn-bg);
+  color: var(--fuse-btn-bg);
+}
+
+:host(.fuse-btn--ghost) button {
+  background: transparent;
+  color: var(--fuse-btn-bg);
+  border: none;
+}
+
+:host(.fuse-btn--link) button {
+  background: transparent;
+  color: var(--fuse-btn-bg);
+  border: none;
+  text-decoration: underline;
+  padding: 0;
+}
+
+// ─── Size variants ────────────────────────────────────────────────────────────
+:host(.fuse-btn--sm) {
+  --fuse-btn-px:        var(--fuse-spacing-3);
+  --fuse-btn-py:        var(--fuse-spacing-1);
+  --fuse-btn-font-size: var(--fuse-font-size-sm);
+}
+
+:host(.fuse-btn--lg) {
+  --fuse-btn-px:        var(--fuse-spacing-6);
+  --fuse-btn-py:        var(--fuse-spacing-3);
+  --fuse-btn-font-size: var(--fuse-font-size-lg);
+}
+
+// ─── Ionic platform overrides ─────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-btn-radius: var(--fuse-radius-lg);
+}
+
+:host-context(.md) {
+  --fuse-btn-radius: var(--fuse-radius-sm);
+}
+
+// ─── Core button element ──────────────────────────────────────────────────────
+button {
+  background:    var(--fuse-btn-bg);
+  color:         var(--fuse-btn-color);
+  border-radius: var(--fuse-btn-radius);
+  padding:       var(--fuse-btn-py) var(--fuse-btn-px);
+  font-size:     var(--fuse-btn-font-size);
+  font-weight:   var(--fuse-btn-font-weight);
+  box-shadow:    var(--fuse-btn-shadow);
+  border:        none;
+  cursor:        pointer;
+  display:       inline-flex;
+  align-items:   center;
+  gap:           var(--fuse-spacing-2);
+  transition:    opacity 0.15s, transform 0.1s;
+  width:         100%;
+  justify-content: center;
+  font-family:   inherit;
+  line-height:   1;
+  white-space:   nowrap;
+
+  &:hover:not(:disabled)  { opacity: 0.88; }
+  &:active:not(:disabled) { transform: scale(0.98); }
+  &:disabled              { opacity: 0.5; cursor: not-allowed; }
+  &:focus-visible {
+    outline:        2px solid var(--fuse-btn-bg);
+    outline-offset: 2px;
+  }
+}
+
+// ─── Spinner ──────────────────────────────────────────────────────────────────
+.fuse-btn__spinner {
+  width:         1em;
+  height:        1em;
+  border:        2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: var(--fuse-radius-full);
+  animation:     fuse-spin 0.65s linear infinite;
+  flex-shrink:   0;
+}
+
+@keyframes fuse-spin {
+  to { transform: rotate(360deg); }
+}
+
+.fuse-btn__content {
+  display:     inline-flex;
+  align-items: center;
+  gap:         var(--fuse-spacing-2);
+}

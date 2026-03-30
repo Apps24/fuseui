@@ -1,0 +1,19 @@
+{
+  "fluid": {
+    "font-size": {
+      "xs":  { "$value": "clamp(0.694rem, 0.65rem + 0.2vw, 0.75rem)" },
+      "sm":  { "$value": "clamp(0.833rem, 0.79rem + 0.2vw, 0.875rem)" },
+      "md":  { "$value": "clamp(1rem,     0.95rem + 0.25vw, 1.125rem)" },
+      "lg":  { "$value": "clamp(1.2rem,   1.1rem  + 0.5vw,  1.5rem)" },
+      "xl":  { "$value": "clamp(1.44rem,  1.3rem  + 0.7vw,  2rem)" },
+      "2xl": { "$value": "clamp(1.728rem, 1.5rem  + 1.1vw,  2.5rem)" },
+      "3xl": { "$value": "clamp(2.074rem, 1.8rem  + 1.4vw,  3rem)" }
+    },
+    "spacing": {
+      "1": { "$value": "clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem)" },
+      "2": { "$value": "clamp(0.5rem,  0.4rem + 0.5vw,  0.75rem)" },
+      "4": { "$value": "clamp(0.75rem, 0.6rem + 0.75vw, 1rem)" },
+      "8": { "$value": "clamp(1.5rem,  1.2rem + 1.5vw,  2rem)" }
+    }
+  }
+}

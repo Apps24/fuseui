@@ -1,0 +1,116 @@
+// ─── Component tokens ────────────────────────────────────────────────────────
+:host {
+  --fuse-checkbox-size-sm: 14px;
+  --fuse-checkbox-size-md: 18px;
+  --fuse-checkbox-size-lg: 22px;
+  --fuse-checkbox-radius: var(--fuse-radius-sm, 4px);
+  --fuse-checkbox-border-width: 2px;
+
+  --fuse-checkbox-border-color: var(--fuse-color-border, #cbd5e1);
+  --fuse-checkbox-bg: var(--fuse-color-surface, #ffffff);
+  --fuse-checkbox-checked-bg: var(--fuse-color-primary, #6366f1);
+  --fuse-checkbox-checked-border: var(--fuse-color-primary, #6366f1);
+  --fuse-checkbox-checked-icon: var(--fuse-color-on-primary, #ffffff);
+  --fuse-checkbox-focus-ring: var(--fuse-color-primary-alpha, rgba(99, 102, 241, 0.25));
+  --fuse-checkbox-disabled-bg: var(--fuse-color-surface-muted, #f1f5f9);
+  --fuse-checkbox-disabled-border: var(--fuse-color-border-muted, #e2e8f0);
+  --fuse-checkbox-disabled-icon: var(--fuse-color-text-muted, #94a3b8);
+  --fuse-checkbox-label-color: var(--fuse-color-text, #1e293b);
+  --fuse-checkbox-label-size: var(--fuse-font-size-md, 0.875rem);
+  --fuse-checkbox-gap: var(--fuse-space-2, 0.5rem);
+
+  display: inline-flex;
+}
+
+// ─── Label wrapper ────────────────────────────────────────────────────────────
+.fuse-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--fuse-checkbox-gap);
+  cursor: pointer;
+  user-select: none;
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+// ─── Hidden native input ──────────────────────────────────────────────────────
+.fuse-checkbox__native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+
+  &:focus-visible ~ .fuse-checkbox__box {
+    outline: 2px solid var(--fuse-checkbox-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+// ─── Styled box ───────────────────────────────────────────────────────────────
+.fuse-checkbox__box {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--fuse-checkbox-size-md);
+  height: var(--fuse-checkbox-size-md);
+  border: var(--fuse-checkbox-border-width) solid var(--fuse-checkbox-border-color);
+  border-radius: var(--fuse-checkbox-radius);
+  background-color: var(--fuse-checkbox-bg);
+  transition: background-color 150ms ease, border-color 150ms ease;
+  color: var(--fuse-checkbox-checked-icon);
+
+  .fuse-checkbox--sm & {
+    width: var(--fuse-checkbox-size-sm);
+    height: var(--fuse-checkbox-size-sm);
+  }
+
+  .fuse-checkbox--lg & {
+    width: var(--fuse-checkbox-size-lg);
+    height: var(--fuse-checkbox-size-lg);
+  }
+
+  .fuse-checkbox--checked &,
+  .fuse-checkbox--indeterminate & {
+    background-color: var(--fuse-checkbox-checked-bg);
+    border-color: var(--fuse-checkbox-checked-border);
+  }
+
+  .fuse-checkbox--disabled & {
+    background-color: var(--fuse-checkbox-disabled-bg);
+    border-color: var(--fuse-checkbox-disabled-border);
+    color: var(--fuse-checkbox-disabled-icon);
+  }
+}
+
+// ─── Icon ─────────────────────────────────────────────────────────────────────
+.fuse-checkbox__icon {
+  width: 70%;
+  height: 70%;
+}
+
+// ─── Label text ───────────────────────────────────────────────────────────────
+.fuse-checkbox__label {
+  color: var(--fuse-checkbox-label-color);
+  font-size: var(--fuse-checkbox-label-size);
+  line-height: 1.4;
+}
+
+// ─── iOS overrides ────────────────────────────────────────────────────────────
+:host-context(.ios) {
+  --fuse-checkbox-radius: var(--fuse-radius-full, 50px);
+}
+
+// ─── Material Design overrides ────────────────────────────────────────────────
+:host-context(.md) {
+  --fuse-checkbox-radius: var(--fuse-radius-xs, 2px);
+  --fuse-checkbox-border-width: 2px;
+}

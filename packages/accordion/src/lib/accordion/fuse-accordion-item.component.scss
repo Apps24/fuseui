@@ -1,0 +1,99 @@
+// ─── Host ─────────────────────────────────────────────────────────────────────
+
+:host {
+  display: block;
+  background: var(--fuse-color-bg-surface);
+  border-bottom: 1px solid var(--fuse-color-border-default);
+
+  &:last-of-type { border-bottom: none; }
+}
+
+:host-context(.ios) { font-size: var(--fuse-fluid-md, 1rem); }
+:host-context(.md)  { font-size: var(--fuse-fluid-md, 1rem); }
+
+// ─── Trigger ──────────────────────────────────────────────────────────────────
+
+.fuse-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--fuse-spacing-4, 16px) var(--fuse-spacing-5, 20px);
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-family: var(--fuse-font-family, system-ui, sans-serif);
+  font-size: var(--fuse-fluid-md, 1rem);
+  font-weight: 500;
+  color: var(--fuse-color-text-primary);
+  cursor: pointer;
+  transition:
+    background var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth),
+    color var(--fuse-duration-fast, 150ms) var(--fuse-easing-smooth);
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+
+  &:hover:not(:disabled) {
+    background: var(--fuse-color-bg-elevated);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--fuse-color-border-focus);
+    outline-offset: -2px;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &[data-pressed='true'] {
+    transform: none; // accordion triggers don't scale on press
+  }
+}
+
+.fuse-accordion__title {
+  flex: 1;
+}
+
+// ─── Chevron ──────────────────────────────────────────────────────────────────
+
+.fuse-accordion__chevron {
+  flex-shrink: 0;
+  margin-left: var(--fuse-spacing-3, 12px);
+  color: var(--fuse-color-text-secondary);
+  transition: transform var(--fuse-duration-base, 200ms) var(--fuse-easing-smooth);
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+
+  &--open {
+    transform: rotate(180deg);
+  }
+}
+
+// ─── Body — CSS grid expand trick ─────────────────────────────────────────────
+
+.fuse-accordion__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows var(--fuse-duration-expand, 300ms) var(--fuse-easing-smooth);
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+
+:host([aria-expanded='true']) .fuse-accordion__body {
+  grid-template-rows: 1fr;
+}
+
+.fuse-accordion__body-inner {
+  overflow: hidden;
+  padding: 0 var(--fuse-spacing-5, 20px);
+  color: var(--fuse-color-text-secondary);
+  font-size: var(--fuse-fluid-sm, 0.875rem);
+  line-height: 1.6;
+}
+
+:host([aria-expanded='true']) .fuse-accordion__body-inner {
+  padding-bottom: var(--fuse-spacing-4, 16px);
+}

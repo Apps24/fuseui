@@ -1,0 +1,157 @@
+:host {
+  display: block;
+}
+
+// ── Layout ────────────────────────────────────────────────────────────────────
+
+.fuse-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fuse-space-4, 16px);
+}
+
+// ── Icon ─────────────────────────────────────────────────────────────────────
+
+.fuse-confirm__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--fuse-radius-full, 9999px);
+  align-self: flex-start;
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+:host(.fuse-confirm--danger) .fuse-confirm__icon {
+  background-color: var(--fuse-color-danger-100, #fee2e2);
+  color: var(--fuse-color-danger-600, #dc2626);
+}
+
+:host(.fuse-confirm--warning) .fuse-confirm__icon {
+  background-color: var(--fuse-color-warning-100, #fef3c7);
+  color: var(--fuse-color-warning-600, #d97706);
+}
+
+:host(.fuse-confirm--info) .fuse-confirm__icon,
+:host(:not(.fuse-confirm--danger):not(.fuse-confirm--warning)) .fuse-confirm__icon {
+  background-color: var(--fuse-color-info-100, #dbeafe);
+  color: var(--fuse-color-info-600, #2563eb);
+}
+
+// ── Body ─────────────────────────────────────────────────────────────────────
+
+.fuse-confirm__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fuse-space-2, 8px);
+}
+
+.fuse-confirm__title {
+  margin: 0;
+  font-size: var(--fuse-font-size-lg, 1.125rem);
+  font-weight: var(--fuse-font-weight-semibold, 600);
+  color: var(--fuse-color-text, #111827);
+  line-height: 1.4;
+}
+
+.fuse-confirm__message {
+  margin: 0;
+  font-size: var(--fuse-font-size-sm, 0.875rem);
+  color: var(--fuse-color-text-muted, #6b7280);
+  line-height: 1.5;
+}
+
+// ── Actions ───────────────────────────────────────────────────────────────────
+
+.fuse-confirm__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--fuse-space-3, 12px);
+  padding-top: var(--fuse-space-2, 8px);
+}
+
+.fuse-confirm__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--fuse-space-2, 8px) var(--fuse-space-4, 16px);
+  font-size: var(--fuse-font-size-sm, 0.875rem);
+  font-weight: var(--fuse-font-weight-medium, 500);
+  border-radius: var(--fuse-radius-md, 8px);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+  &:focus-visible {
+    outline: 2px solid var(--fuse-color-primary, #4f46e5);
+    outline-offset: 2px;
+  }
+}
+
+.fuse-confirm__btn--cancel {
+  background-color: var(--fuse-color-neutral-100, #f3f4f6);
+  color: var(--fuse-color-text, #111827);
+  border-color: var(--fuse-color-neutral-200, #e5e7eb);
+
+  &:hover {
+    background-color: var(--fuse-color-neutral-200, #e5e7eb);
+  }
+}
+
+.fuse-confirm__btn--confirm {
+  background-color: var(--fuse-color-primary, #4f46e5);
+  color: var(--fuse-color-primary-contrast, #ffffff);
+
+  &:hover {
+    background-color: var(--fuse-color-primary-700, #4338ca);
+  }
+}
+
+// ── Type overrides for confirm button ─────────────────────────────────────────
+
+:host(.fuse-confirm--danger) .fuse-confirm__btn--confirm {
+  background-color: var(--fuse-color-danger-600, #dc2626);
+  color: var(--fuse-color-danger-contrast, #ffffff);
+
+  &:hover {
+    background-color: var(--fuse-color-danger-700, #b91c1c);
+  }
+}
+
+:host(.fuse-confirm--warning) .fuse-confirm__btn--confirm {
+  background-color: var(--fuse-color-warning-600, #d97706);
+  color: var(--fuse-color-warning-contrast, #ffffff);
+
+  &:hover {
+    background-color: var(--fuse-color-warning-700, #b45309);
+  }
+}
+
+// ── Platform overrides ────────────────────────────────────────────────────────
+
+:host-context(.ios) {
+  .fuse-confirm__btn {
+    border-radius: var(--fuse-radius-lg, 12px);
+  }
+
+  .fuse-confirm__title {
+    font-size: var(--fuse-font-size-base, 1rem);
+  }
+}
+
+:host-context(.md) {
+  .fuse-confirm__btn {
+    border-radius: var(--fuse-radius-sm, 4px);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: var(--fuse-font-size-xs, 0.75rem);
+  }
+
+  .fuse-confirm__actions {
+    justify-content: flex-end;
+  }
+}
