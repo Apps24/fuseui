@@ -5,6 +5,7 @@
   [class.fuse-textarea--auto-resize]="autoResize()">
 
   @if (label()) {
+    <!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
     <label class="fuse-textarea__label">{{ label() }}</label>
   }
 

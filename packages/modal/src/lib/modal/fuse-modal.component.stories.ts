@@ -1,7 +1,5 @@
 import { applicationConfig, type Meta, type StoryObj } from '@storybook/angular';
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { importProvidersFrom } from '@angular/core';
+import { Component, inject, importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FuseModalService } from './fuse-modal.service';
 import { FUSE_MODAL_REF } from './fuse-modal.tokens';
@@ -42,25 +40,27 @@ class StoryContentComponent {
 @Component({
   selector: 'fuse-story-launcher',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div style="display: flex; flex-wrap: wrap; gap: 12px; padding: 24px;">
-      <button *ngFor="let size of sizes"
-              (click)="open(size)"
+      @for (size of sizes; track size) {
+      <button (click)="open(size)"
               style="padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 6px;
                      cursor: pointer; background: #fff;">
         Open {{ size }}
       </button>
+      }
       <button (click)="openNonDismissable()"
               style="padding: 8px 16px; border: 1px solid #e5e7eb; border-radius: 6px;
                      cursor: pointer; background: #fff;">
         Open (no dismiss)
       </button>
     </div>
-    <p *ngIf="lastResult !== undefined"
-       style="padding: 0 24px; color: #6b7280; font-size: 0.875rem;">
+    @if (lastResult !== undefined) {
+    <p style="padding: 0 24px; color: #6b7280; font-size: 0.875rem;">
       Last result: <strong>{{ lastResult }}</strong>
     </p>
+    }
   `,
 })
 class StoryLauncherComponent {
@@ -87,7 +87,7 @@ class StoryLauncherComponent {
 @Component({
   selector: 'fuse-story-confirm-launcher',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div style="display: flex; flex-wrap: wrap; gap: 12px; padding: 24px;">
       <button (click)="open('danger')"
@@ -106,10 +106,11 @@ class StoryLauncherComponent {
         Confirm (info)
       </button>
     </div>
-    <p *ngIf="lastResult !== undefined"
-       style="padding: 0 24px; color: #6b7280; font-size: 0.875rem;">
+    @if (lastResult !== undefined) {
+    <p style="padding: 0 24px; color: #6b7280; font-size: 0.875rem;">
       Resolved: <strong>{{ lastResult }}</strong>
     </p>
+    }
   `,
 })
 class StoryConfirmLauncherComponent {

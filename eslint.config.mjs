@@ -52,7 +52,11 @@ export default [
       '**/*.cjs',
       '**/*.mjs',
     ],
-    // Override or add rules here
-    rules: {},
+    rules: {
+      // CVA boilerplate callbacks are intentionally empty stubs
+      '@typescript-eslint/no-empty-function': 'off',
+      // Ternary method calls (e.g. isOpen() ? close() : open()) are valid
+      '@typescript-eslint/no-unused-expressions': 'off',
+    },
   },
 ];

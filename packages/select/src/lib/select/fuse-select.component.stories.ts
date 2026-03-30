@@ -2,7 +2,7 @@ import { Meta, StoryObj, applicationConfig, moduleMetadata } from '@storybook/an
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { FuseSelectComponent, FuseSelectOption } from './fuse-select.component';
 
 const COUNTRIES: FuseSelectOption[] = [
@@ -158,7 +158,7 @@ export const Disabled: Story = {
 // ─── Reactive Form ────────────────────────────────────────────────────────────
 @Component({
   standalone: true,
-  imports: [FuseSelectComponent, ReactiveFormsModule, CommonModule],
+  imports: [FuseSelectComponent, ReactiveFormsModule, JsonPipe],
   template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()" style="max-width:360px;padding:24px;display:flex;flex-direction:column;gap:16px">
       <fuse-select
@@ -180,7 +180,7 @@ export const Disabled: Story = {
       <button type="submit" style="padding:8px 16px;background:var(--fuse-color-primary,#3880ff);color:#fff;border:none;border-radius:6px;cursor:pointer">
         Submit
       </button>
-      <pre *ngIf="submitted" style="font-size:12px">{{ form.value | json }}</pre>
+      @if (submitted) { <pre style="font-size:12px">{{ form.value | json }}</pre> }
     </form>
   `,
 })

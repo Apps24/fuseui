@@ -1,5 +1,9 @@
 <div class="fuse-popover__trigger"
+     role="button"
+     tabindex="0"
      (click)="onTriggerClick()"
+     (keydown.enter)="onTriggerClick()"
+     (keydown.space)="onTriggerClick()"
      (mouseenter)="onTriggerMouseEnter()"
      (mouseleave)="onTriggerMouseLeave()">
   <ng-content select="[fusePopoverTrigger]"></ng-content>

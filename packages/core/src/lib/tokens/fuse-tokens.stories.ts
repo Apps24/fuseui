@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import type { Meta, StoryObj } from '@storybook/angular';
 
 /* ── helpers ─────────────────────────────────────────────────────────────── */
@@ -58,7 +57,7 @@ const SHADOW_NAMES = [
 @Component({
   selector: 'fuse-token-showcase',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   template: `
     <div class="wrap">
 
@@ -66,7 +65,8 @@ const SHADOW_NAMES = [
       <section>
         <h2>Colors</h2>
         <div class="swatches">
-          <div class="swatch-card" *ngFor="let t of colors">
+          @for (t of colors; track t.name) {
+          <div class="swatch-card">
             <div class="swatch-box"
                  [style.background]="t.value || 'transparent'"
                  [style.border]="'1px solid var(--fuse-color-border-default)'">
@@ -76,6 +76,7 @@ const SHADOW_NAMES = [
               <span class="var-value">{{ t.value || '(empty)' }}</span>
             </div>
           </div>
+          }
         </div>
       </section>
 
@@ -83,7 +84,8 @@ const SHADOW_NAMES = [
       <section>
         <h2>Spacing</h2>
         <div class="spacing-list">
-          <div class="spacing-row" *ngFor="let t of spacings">
+          @for (t of spacings; track t.name) {
+          <div class="spacing-row">
             <span class="var-name">{{ t.name }}</span>
             <div class="spacing-bar"
                  [style.width]="t.value"
@@ -91,6 +93,7 @@ const SHADOW_NAMES = [
             </div>
             <span class="var-value">{{ t.value }}</span>
           </div>
+          }
         </div>
       </section>
 
@@ -98,13 +101,15 @@ const SHADOW_NAMES = [
       <section>
         <h2>Border Radius</h2>
         <div class="radius-list">
-          <div class="radius-row" *ngFor="let t of radii">
+          @for (t of radii; track t.name) {
+          <div class="radius-row">
             <span class="var-name">{{ t.name }}</span>
             <div class="radius-box"
                  [style.border-radius]="t.value">
             </div>
             <span class="var-value">{{ t.value }}</span>
           </div>
+          }
         </div>
       </section>
 
@@ -112,11 +117,13 @@ const SHADOW_NAMES = [
       <section>
         <h2>Shadows</h2>
         <div class="shadow-list">
-          <div class="shadow-card" *ngFor="let t of shadows">
+          @for (t of shadows; track t.name) {
+          <div class="shadow-card">
             <div class="shadow-box" [style.box-shadow]="t.value"></div>
             <span class="var-name">{{ t.name }}</span>
             <span class="var-value">{{ t.value }}</span>
           </div>
+          }
         </div>
       </section>
 

@@ -222,5 +222,5 @@ describe('FusePopoverComponent', () => {
     fixture.detectChanges();
     const panels = fixture.nativeElement.querySelectorAll('.fuse-popover__panel');
     expect(panels.length).toBeLessThanOrEqual(1);
-  }));
+  });
 });

@@ -7,6 +7,7 @@
   [class.fuse-select--disabled]="isDisabled()">
 
   @if (label()) {
+    <!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
     <label class="fuse-select__label">{{ label() }}</label>
   }
 
@@ -20,6 +21,7 @@
     [disabled]="isDisabled()"
     (click)="toggleOpen()"
     role="combobox"
+    aria-controls="fuse-select-panel"
     [attr.aria-expanded]="isOpen()"
     aria-haspopup="listbox">
 

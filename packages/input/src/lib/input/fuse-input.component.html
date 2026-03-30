@@ -9,6 +9,7 @@
   [class.fuse-input--readonly]="readonly()">
 
   @if (label()) {
+    <!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
     <label class="fuse-input__label" [class.fuse-input__label--required]="required()">
       {{ label() }}
     </label>

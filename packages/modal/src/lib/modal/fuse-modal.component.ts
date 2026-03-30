@@ -33,7 +33,7 @@ import {
 export class FuseModalComponent implements AfterViewInit, OnDestroy {
   // ─── Injected tokens ───────────────────────────────────────────────────────
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   
   protected readonly config = inject<Required<FuseModalConfig>>(FUSE_MODAL_CONFIG);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected readonly modalRef = inject<FuseModalRef<any>>(FUSE_MODAL_REF);

@@ -10,6 +10,7 @@ export default [
         'error',
         {
           ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}'],
+          ignoredDependencies: ['@angular/common', 'rxjs'],
         },
       ],
     },
@@ -26,7 +27,7 @@ export default [
         'error',
         {
           type: 'attribute',
-          prefix: 'lib',
+          prefix: 'fuse',
           style: 'camelCase',
         },
       ],
@@ -34,7 +35,7 @@ export default [
         'error',
         {
           type: 'element',
-          prefix: 'lib',
+          prefix: 'fuse',
           style: 'kebab-case',
         },
       ],
@@ -42,7 +43,6 @@ export default [
   },
   {
     files: ['**/*.html'],
-    // Override or add rules here
     rules: {},
   },
 ];

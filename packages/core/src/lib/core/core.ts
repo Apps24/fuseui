@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'lib-core',
+  selector: 'fuse-core',
   imports: [],
   templateUrl: './core.html',
   styleUrl: './core.scss',

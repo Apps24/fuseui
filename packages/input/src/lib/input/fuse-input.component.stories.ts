@@ -3,6 +3,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
+import { JsonPipe } from '@angular/common';
 import { FuseInputComponent } from './fuse-input.component';
 
 const meta: Meta<FuseInputComponent> = {
@@ -159,7 +160,7 @@ export const Readonly: Story = {
 // ─── Reactive Form Example ────────────────────────────────────────────────────
 @Component({
   standalone: true,
-  imports: [FuseInputComponent, ReactiveFormsModule],
+  imports: [FuseInputComponent, ReactiveFormsModule, JsonPipe],
   template: `
     <form [formGroup]="form" (ngSubmit)="onSubmit()" style="max-width:360px;padding:24px;display:flex;flex-direction:column;gap:16px">
       <fuse-input
@@ -183,7 +184,7 @@ export const Readonly: Story = {
       <button type="submit" style="padding:8px 16px;background:var(--fuse-color-primary,#3880ff);color:#fff;border:none;border-radius:6px;cursor:pointer">
         Submit
       </button>
-      <pre *ngIf="submitted" style="font-size:12px">{{ form.value | json }}</pre>
+      @if (submitted) { <pre style="font-size:12px">{{ form.value | json }}</pre> }
     </form>
   `,
 })
@@ -218,7 +219,7 @@ export const ReactiveFormExample: Story = {
       <button type="submit" style="padding:8px 16px;background:var(--fuse-color-primary,#3880ff);color:#fff;border:none;border-radius:6px;cursor:pointer">
         Save
       </button>
-      <p *ngIf="saved" style="font-size:13px;color:var(--fuse-color-success,#10b981)">Saved: {{ name }}</p>
+      @if (saved) { <p style="font-size:13px;color:var(--fuse-color-success,#10b981)">Saved: {{ name }}</p> }
     </form>
   `,
 })

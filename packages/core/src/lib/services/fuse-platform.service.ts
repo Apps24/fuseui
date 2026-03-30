@@ -1,9 +1,9 @@
-import { Injectable, Optional } from '@angular/core';
+import { Injectable, Optional, inject } from '@angular/core';
 import { Platform } from '@ionic/angular';
 
 @Injectable({ providedIn: 'root' })
 export class FusePlatformService {
-  constructor(@Optional() private ionicPlatform: Platform) {}
+  private readonly ionicPlatform = inject<Platform>(Platform, { optional: true });
 
   get isIonic(): boolean { return !!this.ionicPlatform; }
 
