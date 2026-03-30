@@ -47,6 +47,11 @@
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true
+        },
+        "ci": {
+          "outputMode": "static",
+          "outputHashing": "none",
+          "prerender": false
         }
       },
       "defaultConfiguration": "production"
@@ -79,6 +84,16 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "shop:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/shop/browser",
+        "spa": true
+      }
+    },
+    "serve-static-ci": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "shop:build:ci",
         "port": 4200,
         "staticFilePath": "dist/apps/shop/browser",
         "spa": true
