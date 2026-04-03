@@ -78,8 +78,13 @@
       "tooltip"
     ],
     "projectsRelationship": "independent",
-    "docker": { "skipVersionActions": true },
-    "version": { "preVersionCommand": "pnpm dlx nx run-many -t build" }
+    "version": {
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "projectChangelogs": true,
+      "automaticFromRef": true
+    }
   },
   "plugins": [
     { "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } },
