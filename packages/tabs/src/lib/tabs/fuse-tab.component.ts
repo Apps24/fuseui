@@ -5,7 +5,7 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { FuseBadgeComponent } from '@fuse/badge';
+import { FuseBadgeComponent } from '@fuse_ui/badge';
 import { FUSE_TABS } from './fuse-tabs.token';
 
 @Component({

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FuseIconRegistryService } from '@fuse/core';
+import { FuseIconRegistryService } from '@fuse_ui/core';
 import { FuseIconComponent } from './fuse-icon.component';
 
 describe('FuseIconComponent', () => {

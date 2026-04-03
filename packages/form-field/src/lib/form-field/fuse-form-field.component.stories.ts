@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { FuseFormFieldComponent } from './fuse-form-field.component';
-import { FuseInputComponent } from '@fuse/input';
+import { FuseInputComponent } from '@fuse_ui/input';
 
 const meta: Meta<FuseFormFieldComponent> = {
   title: 'Fuse / FormField',

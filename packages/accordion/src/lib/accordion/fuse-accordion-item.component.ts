@@ -7,7 +7,7 @@ import {
   input,
   viewChild,
 } from '@angular/core';
-import { FuseIconComponent } from '@fuse/icon';
+import { FuseIconComponent } from '@fuse_ui/icon';
 import { FUSE_ACCORDION } from './fuse-accordion.token';
 
 @Component({

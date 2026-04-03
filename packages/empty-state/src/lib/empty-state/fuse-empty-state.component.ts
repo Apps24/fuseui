@@ -4,8 +4,8 @@ import {
   input,
   output,
 } from '@angular/core';
-import { FuseIconComponent } from '@fuse/icon';
-import { FuseButtonComponent } from '@fuse/button';
+import { FuseIconComponent } from '@fuse_ui/icon';
+import { FuseButtonComponent } from '@fuse_ui/button';
 
 @Component({
   selector: 'fuse-empty-state',

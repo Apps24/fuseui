@@ -7,7 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { FuseIconRegistryService } from '@fuse/core';
+import { FuseIconRegistryService } from '@fuse_ui/core';
 
 const SIZE_MAP: Record<string, number> = {
   xs: 12,

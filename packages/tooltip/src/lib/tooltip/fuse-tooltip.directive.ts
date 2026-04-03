@@ -13,7 +13,7 @@ import {
   OverlayRef,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { FuseAnimationService } from '@fuse/core';
+import { FuseAnimationService } from '@fuse_ui/core';
 import { FuseTooltipContentComponent } from './fuse-tooltip-content.component';
 
 type Placement = 'top' | 'bottom' | 'left' | 'right';

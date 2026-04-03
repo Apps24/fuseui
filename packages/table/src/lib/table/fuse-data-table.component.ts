@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { CdkTableModule } from '@angular/cdk/table';
-import { FuseSkeletonComponent } from '@fuse/skeleton';
-import { FuseIconComponent } from '@fuse/icon';
+import { FuseSkeletonComponent } from '@fuse_ui/skeleton';
+import { FuseIconComponent } from '@fuse_ui/icon';
 
 // ─── Public types ─────────────────────────────────────────────────────────────
 

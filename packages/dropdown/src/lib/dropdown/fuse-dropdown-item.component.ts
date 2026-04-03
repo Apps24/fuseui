@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import { FuseIconComponent } from '@fuse/icon';
+import { FuseIconComponent } from '@fuse_ui/icon';
 
 @Component({
   selector: 'fuse-dropdown-item',

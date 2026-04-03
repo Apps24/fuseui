@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent } from 'rxjs';
-import { FuseAnimationService } from '@fuse/core';
+import { FuseAnimationService } from '@fuse_ui/core';
 
 @Component({
   selector: 'fuse-dropdown',

@@ -3,7 +3,7 @@ import {
   Component,
   input,
 } from '@angular/core';
-import { FuseLabelComponent } from '@fuse/label';
+import { FuseLabelComponent } from '@fuse_ui/label';
 
 @Component({
   selector: 'fuse-form-field',

@@ -1,6 +1,6 @@
 {
-  "name": "@fuse/badge",
-  "version": "0.0.1",
+  "name": "@fuse_ui/badge",
+  "version": "0.1.0",
   "license": "MIT",
   "publishConfig": { "access": "public" },
   "keywords": ["fuse-ui","angular","ionic","ionic8","angular18","angular19","angular20","angular21","ui-components","design-system","css-variables","signals","standalone","multi-theme","dark-mode","fluid-typography","animated"],

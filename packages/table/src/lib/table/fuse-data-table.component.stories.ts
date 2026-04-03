@@ -1,6 +1,6 @@
 import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { FuseDataTableComponent, FuseColumnDef } from './fuse-data-table.component';
-import { FuseEmptyStateComponent } from '@fuse/empty-state';
+import { FuseEmptyStateComponent } from '@fuse_ui/empty-state';
 
 const meta: Meta<FuseDataTableComponent> = {
   title: 'Fuse / DataTable',

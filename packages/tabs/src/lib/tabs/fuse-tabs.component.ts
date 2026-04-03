@@ -16,7 +16,7 @@ import {
   viewChild,
   viewChildren,
 } from '@angular/core';
-import { FuseBadgeComponent } from '@fuse/badge';
+import { FuseBadgeComponent } from '@fuse_ui/badge';
 import { FuseTabComponent } from './fuse-tab.component';
 import { FUSE_TABS, TabsRef } from './fuse-tabs.token';
 
